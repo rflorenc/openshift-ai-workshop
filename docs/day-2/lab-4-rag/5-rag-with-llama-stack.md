@@ -38,4 +38,13 @@ first vector store in your Llama Stack: this one.
 
 **Checkpoint:** the notebook's grounded answers quote the botany document, and Attu shows its vectors.
 
+## Bonus: see your embeddings
+
+Time left? The notebook ends with a **Bonus** section. It turns every sentence of the botany document,
+and your questions, into vectors with the same embedding model, then opens two heatmaps in the open
+source viewer [jina-ai/correlations](https://github.com/jina-ai/correlations): which sentences talk about
+the same thing, and which sentences each question would retrieve. Watch the
+[2-minute demo](https://youtu.be/klvpG2zrRL0) first. Run the cells in order; the links they print open
+in this browser, where you are already logged in.
+
 Back to the [overview](index.md). Next lab: Lab 5, Agents and MCP.
