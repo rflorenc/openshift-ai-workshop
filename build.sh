@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# build.sh [build|serve]: the workshop website from the participant guides.
+# build.sh [build|serve|publish]: the workshop website from the participant guides.
 #   build (default)  regenerate docs/ and build the static site into site/ (for GitHub Pages or any web server)
 #   serve            regenerate docs/ and serve it on http://127.0.0.1:8000 with live reload of src/ changes
+#   publish          regenerate, commit the source to main, push, deploy site/ to gh-pages
+#                    (live at https://rflorenc.github.io/openshift-ai-workshop/ after a minute)
 #
 # Source of truth: ../lab-setup/labs/<day>/<lab>/guide (listed in labs.yaml) + src/ (start page, credits,
 # style, placeholder script). docs/ is generated: never edit it. MkDocs Material runs in a venv outside
@@ -98,5 +100,10 @@ case "$MODE" in
   serve) exec "$VENV/bin/mkdocs" serve -f mkdocs.gen.yml ;;
   build) "$VENV/bin/mkdocs" build -f mkdocs.gen.yml --clean 2>&1 | grep -v -E "^INFO +-  (Cleaning|Building|Documentation built)" || true
          echo "== site/ built: open site/index.html, or ./build.sh serve" ;;
-  *) echo "usage: build.sh [build|serve]"; exit 2 ;;
+  publish)
+    git add -A
+    git diff --cached --quiet || git commit -q -m "Update guides"
+    git push -q origin main
+    NO_MKDOCS_2_WARNING=1 "$VENV/bin/mkdocs" gh-deploy -f mkdocs.gen.yml --force --message "Publish site" 2>&1 | grep -E "ERROR|available at" || true ;;
+  *) echo "usage: build.sh [build|serve|publish]"; exit 2 ;;
 esac
