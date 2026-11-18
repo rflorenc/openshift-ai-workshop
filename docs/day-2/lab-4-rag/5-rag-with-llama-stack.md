@@ -47,4 +47,4 @@ the same thing, and which sentences each question would retrieve. Watch the
 [2-minute demo](https://youtu.be/klvpG2zrRL0) first. Run the cells in order; the links they print open
 in this browser, where you are already logged in.
 
-Back to the [overview](index.md). Next lab: Lab 5, Agents and MCP.
+Back to the [overview](index.md). Next: **Guardrails: break the bot**. Lab 5 (Agents and MCP) comes after it and uses the vector store you just created.

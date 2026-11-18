@@ -158,4 +158,4 @@ Spikee, as their [website](https://spikee.ai/) says, is a Simple Prompt Injectio
     When you run such test, you can check the details in the report and see what kind of attacks got successful and plan what you need to improve; maybe a better prompt injection model or retrain the existing one, maybe some simple additions to regex..
 
 
-Back to the [overview](index.md).
+Back to the [overview](index.md). Next lab: **Lab 5, Agents and MCP**.
