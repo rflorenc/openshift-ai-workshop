@@ -14,7 +14,7 @@ Browse the programs in the "Academic Excellence" section, and download the sylla
 
     ![playground](./images/playground.png)
 
-    The first time, the page offers **Create playground**: in **Configure playground** tick only **Llama 3.2 3B**, leave **Max tokens** empty (it limits the length of the answer, not of the question) and click **Create**. It takes a minute or two to start.
+    The first time, the page offers **Create playground**: in **Configure playground** tick only **Llama 3.2 3B**, leave **Max tokens** empty (it limits the length of the answer, not of the question) and click **Create**. Its status shows `?`: it is the workshop's shared model, added to your project as an endpoint, so the page cannot check it; that is fine. It takes a minute or two to start.
 
 2. Try asking a question, such as `What is the total credits in Biotechnology program in Redwood Digital University?` or something similar (for whatever course you picked).
 
