@@ -32,6 +32,8 @@ Browse the programs in the "Academic Excellence" section, and download the sylla
 
 4. Wait for the upload to finish and then try asking the same thing again. Do you get a better answer this time? You should see the response is ✨ grounded ✨ on the PDF you provided :)
 
+    Tip: click **New chat** before each new question while Knowledge is on. Every answer carries the PDF chunks it retrieved, and a long chat can grow past what the model accepts; when that happens the reply comes back empty, with only its timing shown.
+
 Now that we have seen RAG in practice, let's build it ourselves, step by step.
 
 Next: [Understanding embeddings](2-rag-basics.md)
