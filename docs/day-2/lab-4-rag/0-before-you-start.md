@@ -36,8 +36,8 @@ You set up the workbench once here and keep using it in Lab 5.
    ![choose-python-env.png](./images/choose-python-env.png)
    ![choose-python-env2.png](./images/choose-python-env2.png)
 
-   In a notebook's first cell, replace `<USER_NAME>` with your user and `<CLUSTER_DOMAIN>` with the
-   value from your instructor when it asks for them.
+   Your copy of the notebooks already has your user name and the cluster domain filled in (`username = "<USER_NAME>"`,
+   `cluster_domain = "<CLUSTER_DOMAIN>"`); just check them when a cell asks.
 
 Already prepared in your project: **Milvus** (vector database, Helm release `milvus`, with its web UI
 **Attu**) and a **Llama Stack** instance (`llama-stack-service`) connected to the workshop's Llama 3.2
