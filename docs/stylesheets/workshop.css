@@ -1,0 +1,80 @@
+/* Workshop look: the workshop board's palette (white, light-grey cards, coloured chips), Noto Sans. */
+:root {
+  --ws-text: #1a1a1a;
+  --ws-muted: #595959;
+  --ws-card: #f7f7f7;
+  --ws-border: #e7e7e7;
+  --ws-lab-bg: #adf0c7;      --ws-lab-fg: #067429;
+  --ws-demo-bg: #dedaff;     --ws-demo-fg: #6631d7;
+  --ws-slides-bg: #c6dcff;   --ws-slides-fg: #305bab;
+  --ws-activity-bg: #ffdcb8; --ws-activity-fg: #a3470a;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #ffffff;          /* header and tabs: white, like the board */
+  --md-primary-fg-color--light: #ffffff;
+  --md-primary-fg-color--dark: #f7f7f7;
+  --md-primary-bg-color: var(--ws-text);   /* header text */
+  --md-primary-bg-color--light: var(--ws-muted);
+  --md-accent-fg-color: var(--ws-slides-fg);
+  --md-typeset-a-color: var(--ws-slides-fg);
+  --md-default-fg-color: var(--ws-text);
+  --md-code-bg-color: var(--ws-card);
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1e2129;
+  --md-primary-fg-color--dark: #16181d;
+  --md-primary-bg-color: #f2f2f2;
+  --md-accent-fg-color: #8fb3ff;
+  --md-typeset-a-color: #8fb3ff;
+}
+
+.md-header { border-bottom: 1px solid var(--ws-border); box-shadow: none; }
+.md-tabs { border-bottom: 1px solid var(--ws-border); }
+[data-md-color-scheme="slate"] .md-header, [data-md-color-scheme="slate"] .md-tabs { border-color: #2c303a; }
+.md-tabs__link { font-weight: 600; opacity: .75; }
+.md-tabs__link--active, .md-tabs__link:hover { opacity: 1; }
+
+.md-typeset h1 { font-weight: 700; color: var(--md-default-fg-color); letter-spacing: -.01em; }
+.md-typeset h2 { font-weight: 700; }
+.md-typeset table:not([class]) { border-radius: 12px; overflow: hidden; border: 1px solid var(--ws-border); }
+.md-typeset table:not([class]) th { background: var(--ws-card); }
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th { background: #22252d; }
+.md-typeset img { border-radius: 8px; }
+
+/* chips, as on the board: Lab / Demo / Slides / Activity */
+.chip { display: inline-block; padding: .15em .8em; border-radius: 999px; font-size: .72rem; font-weight: 700;
+        letter-spacing: .02em; text-transform: uppercase; vertical-align: middle; margin-right: .4em; }
+.chip.lab      { background: var(--ws-lab-bg);      color: var(--ws-lab-fg); }
+.chip.demo     { background: var(--ws-demo-bg);     color: var(--ws-demo-fg); }
+.chip.slides   { background: var(--ws-slides-bg);   color: var(--ws-slides-fg); }
+.chip.activity { background: var(--ws-activity-bg); color: var(--ws-activity-fg); }
+
+/* cards on the start page */
+.ws-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+.ws-card { background: var(--ws-card); border: 1px solid var(--ws-border); border-radius: 12px; padding: 1rem 1.1rem;
+           transition: transform .12s ease, box-shadow .12s ease; }
+.ws-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+[data-md-color-scheme="slate"] .ws-card { background: #22252d; border-color: #2c303a; }
+.ws-card h3 { margin: .5em 0 .3em !important; font-size: 1rem; }
+.ws-card p { margin: 0; color: var(--ws-muted); font-size: .8rem; }
+[data-md-color-scheme="slate"] .ws-card p { color: #b4b8c2; }
+.ws-card a { text-decoration: none; }
+
+/* "your values" form */
+.ws-values { background: var(--ws-card); border: 1px solid var(--ws-border); border-radius: 12px; padding: 1rem 1.2rem; }
+[data-md-color-scheme="slate"] .ws-values { background: #22252d; border-color: #2c303a; }
+.ws-values label { display: block; font-size: .75rem; font-weight: 600; margin: .6rem 0 .2rem; color: var(--ws-muted); }
+.ws-values input { width: 100%; padding: .45rem .6rem; border: 1px solid var(--ws-border); border-radius: 8px;
+                   font: inherit; font-size: .8rem; background: #fff; color: var(--ws-text); }
+.ws-values .ws-buttons { margin-top: .9rem; display: flex; gap: .5rem; align-items: center; }
+.ws-values button { padding: .45rem 1rem; border-radius: 999px; border: 0; font-weight: 700; cursor: pointer; font-size: .75rem; }
+.ws-values button.save { background: var(--ws-slides-fg); color: #fff; }
+.ws-values button.clear { background: var(--ws-border); color: var(--ws-text); }
+.ws-values .ws-status { font-size: .75rem; color: var(--ws-lab-fg); }
+
+/* reminder shown at the top of lab pages until the values are set */
+.ws-reminder { background: var(--ws-activity-bg); color: var(--ws-activity-fg); border-radius: 12px;
+               padding: .6rem 1rem; font-size: .8rem; font-weight: 600; margin-bottom: 1rem; }
+.ws-reminder a { color: inherit; text-decoration: underline; }
+.ws-filled { background: rgba(48, 91, 171, .08); border-radius: 4px; padding: 0 .15em; }

@@ -1,0 +1,18 @@
+# Which labs the site shows, in order, with the chip each one gets (colours as on the workshop board).
+# type: lab (green) | activity (orange) | demo (purple) | slides (blue)
+# src: folder under ../lab-setup/labs/ whose guide/ is copied; the guide's README.md is the lab's start page.
+days:
+  - title: Day 1
+    slug: day-1
+    subtitle: Platform, model serving, MLOps
+    labs:
+      - {src: day_1/lab1-serve-llm, slug: lab-1-serve-an-llm, nav: "Lab 1: Serve an LLM", type: lab, minutes: 70}
+      - {src: day_1/lab2-mlops, slug: lab-2-mlops, nav: "Lab 2: MLOps with Jukebox", type: lab, minutes: 105}
+      - {src: day_1/lab3-coco, slug: lab-3-image-captioning, nav: "Lab 3: Image captioning on a GPU", type: lab, minutes: 60}
+  - title: Day 2
+    slug: day-2
+    subtitle: GenAI — RAG, guardrails, agents
+    labs:
+      - {src: day_2/lab4-rag, slug: lab-4-rag, nav: "Lab 4: RAG", type: lab, minutes: 60}
+      - {src: day_2/guardrails, slug: guardrails, nav: "Guardrails: break the bot", type: activity, minutes: 45}
+      - {src: day_2/lab5-agents-mcp, slug: lab-5-agents-and-mcp, nav: "Lab 5: Agents and MCP", type: lab, minutes: 75}
