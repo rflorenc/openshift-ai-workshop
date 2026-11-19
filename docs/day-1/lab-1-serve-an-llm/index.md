@@ -126,19 +126,22 @@ The API is OpenAI-compatible, under `/v1`.
 
    Slower than a cloud endpoint: CPU inference. Note `usage` in the answer (prompt and completion tokens).
 
-4. The same from Python, with the OpenAI client. The minimal image does not include it, so install it first, then
-   start `python3` in the same terminal (so `ENDPOINT` and `MODEL` are set):
-
-   ```bash
-   pip install -q openai
-   python3
-   ```
+4. The same from Python, with the OpenAI client, in a notebook: **File → New → Notebook** (Python 3). The minimal
+   image does not include the client, so the first cell installs it:
 
    ```python
-   import os
+   %pip install -q openai
+   ```
+
+   Then, in a new cell, with **your** endpoint (the URL you copied) and **your** model id (`echo $MODEL` in the
+   terminal shows it):
+
+   ```python
    from openai import OpenAI
-   client = OpenAI(base_url=os.environ["ENDPOINT"] + "/v1", api_key="none")
-   r = client.chat.completions.create(model=os.environ["MODEL"],
+   ENDPOINT = "http://<MODEL_NAME>-predictor.<USER_NAME>-serving.svc.cluster.local"   # your copied URL
+   MODEL = "<MODEL_NAME>"                                                              # your model id
+   client = OpenAI(base_url=ENDPOINT + "/v1", api_key="none")
+   r = client.chat.completions.create(model=MODEL,
          messages=[{"role": "user", "content": "Give me three names for a cat."}], max_tokens=60)
    print(r.choices[0].message.content)
    ```
