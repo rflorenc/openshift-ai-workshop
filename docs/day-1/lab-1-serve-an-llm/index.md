@@ -53,12 +53,19 @@ and note its **context length** (you need it in step 5) and its license.
 4. **Model details**: already filled from the catalog: location **URI** `oci://quay.io/rh-aiservices-bu/tinyllama:1.0`,
    model type **Generative AI model**. Nothing to change.
 5. **Model deployment**:
-   - Model deployment name **`tinyllama`** (click **Edit resource name** and make the resource name `tinyllama` as well)
-   - Hardware profile: the CPU profile; expand **Customize resource requests and limits**:
-     CPU request **3**, limit **4**; memory request **6 GiB**, limit **8 GiB**
-   - Serving runtime: **CUSTOM - vLLM Serving Runtime for CPU**
-6. **Advanced settings**: leave **external route** and **token authentication** off (the model stays reachable
-   only inside the cluster) and the runtime arguments empty: you use them in part 5.
+   - Model deployment name **`tinyllama`**. The resource name below it is generated from the catalog name
+     (e.g. `tinyllamatinyllama-11b-chat-v1`): click **Edit resource name** and make it **`tinyllama`** as well
+   - Deployment method: **Inference service** (not *LLM inference service with llm-d*: that one is for distributed serving)
+   - Hardware profile: **CPU only**; expand **Customize resource requests and limits**:
+     CPU requests **3**, CPU limits **4**; memory requests **6 GiB**, memory limits **8 GiB**
+   - Serving runtime template: **Manual selection** → **CUSTOM - vLLM Serving Runtime for CPU**
+   - Replica count **1**
+6. **Advanced settings**:
+   - Model access (external route) and Token authentication: leave **off**; the model stays reachable only inside
+     the cluster
+   - Configuration parameters: leave **Add custom runtime arguments** unticked for now (you use it in part 5)
+   - Deployment strategy: **Recreate** (one pod at a time: fits your CPU quota, and makes part 5's failure visible)
+   - Optional: tick **Add as AI asset endpoint** to also chat with your model in **Gen AI studio → Playground**
 7. **Review** → **Deploy**, and wait until the status is **Started** (a few minutes: the model image is pulled first).
 
 What happened: OpenShift AI created a KServe `InferenceService` in your project; KServe started a
@@ -118,13 +125,13 @@ The API is OpenAI-compatible, under `/v1`.
 vLLM reserves memory for the longest context it will accept (`--max-model-len`). Ask for more than
 the model supports and it refuses to start, with a clear message.
 
-1. Your project → **Models** → `tinyllama` → ⋮ → **Edit**.
-2. Under **Additional serving runtime arguments** add: `--max-model-len=8192`
-   (TinyLlama's card says 2048). **Redeploy**.
+1. **AI hub → Models → Deployments** (or your project → **Models**) → `tinyllama` → ⋮ → **Edit**.
+2. In **Advanced settings**, tick **Add custom runtime arguments** and enter `--max-model-len=8192`
+   (TinyLlama's card says 2048). Save / **Redeploy**.
 3. Watch it fail: OpenShift console → project `<USER_NAME>-serving` → **Workloads → Pods** →
    the `tinyllama-predictor-…` pod → **Logs**. Find the line that explains why
    (it names the model's maximum length).
-4. Remove the argument again and redeploy; the status returns to **Started**.
+4. Edit again, untick **Add custom runtime arguments** (or remove the argument) and redeploy; the status returns to **Started**.
 
 On a GPU the same setting decides how much GPU memory vLLM takes for the KV cache; too high is the
 most common reason a model does not start. Your instructor shows how to estimate it for a GPU model.
