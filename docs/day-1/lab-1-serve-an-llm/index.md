@@ -46,18 +46,20 @@ and note its **context length** (you need it in step 5) and its license.
 
 1. Log in to the OpenShift AI dashboard: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
 2. Go to **AI hub → Models**, tab **Catalog**, and pick **Workshop models** in the row of categories (next to *Red Hat AI models* and *Other models*).
-   Open **TinyLlama-1.1B-Chat-v1.0**, read the card, then click **Deploy**.
+   Open **TinyLlama-1.1B-Chat-v1.0**, read the card, then click **Deploy model**. A five-step wizard opens:
    > Not in the catalog? Go to your project → **Models → Deploy model** and choose
    > **URI** as the model location with `oci://quay.io/rh-aiservices-bu/tinyllama:1.0`. The rest is the same.
-3. Project: **`<USER_NAME>-serving`**. Model deployment name: **`tinyllama`**
-   (click **Edit resource name** and make the resource name `tinyllama` as well).
-4. Hardware profile: the CPU profile. Expand **Customize resource requests and limits**:
-   - CPU request **3**, CPU limit **4**
-   - Memory request **6 GiB**, memory limit **8 GiB**
-5. Serving runtime: **CUSTOM - vLLM Serving Runtime for CPU**.
-6. Leave **Make deployed models available through an external route** and **Require token
-   authentication** unchecked: the model stays reachable only inside the cluster.
-7. **Deploy model**, and wait until the status is **Started** (a few minutes: the model image is pulled first).
+3. **Preconfigure deployment**: project **`<USER_NAME>-serving`**.
+4. **Model details**: already filled from the catalog: location **URI** `oci://quay.io/rh-aiservices-bu/tinyllama:1.0`,
+   model type **Generative AI model**. Nothing to change.
+5. **Model deployment**:
+   - Model deployment name **`tinyllama`** (click **Edit resource name** and make the resource name `tinyllama` as well)
+   - Hardware profile: the CPU profile; expand **Customize resource requests and limits**:
+     CPU request **3**, limit **4**; memory request **6 GiB**, limit **8 GiB**
+   - Serving runtime: **CUSTOM - vLLM Serving Runtime for CPU**
+6. **Advanced settings**: leave **external route** and **token authentication** off (the model stays reachable
+   only inside the cluster) and the runtime arguments empty: you use them in part 5.
+7. **Review** → **Deploy**, and wait until the status is **Started** (a few minutes: the model image is pulled first).
 
 What happened: OpenShift AI created a KServe `InferenceService` in your project; KServe started a
 vLLM pod with the model mounted from the OCI image (a "modelcar").
