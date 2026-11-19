@@ -2393,9 +2393,15 @@ and note its <strong>context length</strong> (you need it in step 5) and its lic
 <li><strong>Model details</strong>: already filled from the catalog: location <strong>URI</strong> <code>oci://quay.io/rh-aiservices-bu/tinyllama:1.0</code>,
    model type <strong>Generative AI model</strong>. Nothing to change.</li>
 <li><strong>Model deployment</strong>:</li>
-<li>Model deployment name <strong><code>tinyllama</code></strong>. The resource name below it is generated from the catalog name
-     (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>): click <strong>Edit resource name</strong> and make it <strong><code>tinyllama</code></strong> as well</li>
-<li>Deployment method: <strong>Inference service</strong> (not <em>LLM inference service with llm-d</em>: that one is for distributed serving)</li>
+<li>
+<p>Model deployment name <strong><code>tinyllama</code></strong>. The resource name below it is generated from the catalog name
+     (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>): click <strong>Edit resource name</strong> and make it <strong><code>tinyllama</code></strong> as well</p>
+<p><img alt="Model deployment step: the name field, the generated resource name below it, Edit resource name" src="images/deploy-model-deployment.png" /></p>
+<p><em>Here the resource name is still the generated one: click <strong>Edit resource name</strong> and set it to <code>tinyllama</code>.</em></p>
+</li>
+<li>
+<p>Deployment method: <strong>Inference service</strong> (not <em>LLM inference service with llm-d</em>: that one is for distributed serving)</p>
+</li>
 <li>Hardware profile: <strong>CPU only</strong>; expand <strong>Customize resource requests and limits</strong>:
      CPU requests <strong>3</strong>, CPU limits <strong>4</strong>; memory requests <strong>6 GiB</strong>, memory limits <strong>8 GiB</strong></li>
 <li>Serving runtime template: <strong>Manual selection</strong> → <strong>CUSTOM - vLLM Serving Runtime for CPU</strong></li>
@@ -2420,33 +2426,44 @@ It looks like:</p>
 <ol>
 <li>In <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workbenches → Create workbench</strong>: name <code>client</code>, image
    <strong>Jupyter | Minimal | CPU | Python 3.12</strong> (or Data Science), the smallest size. Start it and open it.</li>
-<li>Open a <strong>Terminal</strong> in JupyterLab. Set the endpoint you copied (without <code>/v1</code>):</li>
+<li>Open a <strong>Terminal</strong> in JupyterLab. Set <strong>your</strong> endpoint, the <strong>Internal endpoint</strong> you copied in part 3
+   (without <code>/v1</code>), and list the models it serves:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENDPOINT</span><span class="o">=</span>http://tinyllama-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local<span class="w">   </span><span class="c1"># your copied URL</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENDPOINT</span><span class="o">=</span>http://tinyllama-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local<span class="w">   </span><span class="c1"># replace with your copied URL</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
 </code></pre></div>
-<p>The model id is <code>tinyllama</code>: the resource name of your deployment. Use <strong>your</strong> copied endpoint: if the
-   resource name is still the generated one (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>), both the address and the model id
-   carry that name. <code>curl: (6) Could not resolve host</code> means the address does not match your deployment.</p>
+<p><img alt="curl /v1/models in the workbench terminal" src="images/curl-models.png" /></p>
+<p><em>Example answer. The model <code>id</code> is the resource name of the deployment: here it was left at the generated name
+   (<code>tinyllamatinyllama-11b-chat-v1</code>); with the resource name <code>tinyllama</code> it reads <code>tinyllama</code>.</em>
+   <code>curl: (6) Could not resolve host</code> means the address does not match your deployment: copy it again.</p>
+<p>Keep the id in a variable, so the next commands use whatever your deployment is called:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MODEL</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">'import sys, json; print(json.load(sys.stdin)["data"][0]["id"])'</span><span class="k">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$MODEL</span>
+</code></pre></div>
 <ol>
 <li>A chat completion:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/chat/completions<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="s1">  "model": "tinyllama",</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s1">  "messages": [{"role": "system", "content": "You are a helpful assistant."},</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s1">               {"role": "user", "content": "In two sentences: what is Kubernetes?"}],</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s1">  "max_tokens": 100}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/chat/completions<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span>-d<span class="w"> </span>@-<span class="w"> </span><span class="s">&lt;&lt;EOF | python3 -m json.tool</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s">{"model": "$MODEL",</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s"> "messages": [{"role": "system", "content": "You are a helpful assistant."},</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">              {"role": "user", "content": "In two sentences: what is Kubernetes?"}],</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s"> "max_tokens": 100}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">EOF</span>
 </code></pre></div>
 <p>Slower than a cloud endpoint: CPU inference. Note <code>usage</code> in the answer (prompt and completion tokens).</p>
 <ol>
-<li>The same from Python, with the OpenAI client (new notebook, or <code>python3</code> in the terminal):</li>
+<li>The same from Python, with the OpenAI client. The minimal image does not include it, so install it first, then
+   start <code>python3</code> in the same terminal (so <code>ENDPOINT</code> and <code>MODEL</code> are set):</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>          <span class="c1"># pip install openai, if the image lacks it</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ENDPOINT"</span><span class="p">,</span> <span class="s2">"&lt;your endpoint&gt;"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">"tinyllama"</span><span class="p">,</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Give me three names for a cat."</span><span class="p">}],</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>openai
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python3
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"ENDPOINT"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">r</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"MODEL"</span><span class="p">],</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>      <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Give me three names for a cat."</span><span class="p">}],</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </code></pre></div>
 <p>Any application that speaks the OpenAI API can use your model this way, with only the base URL changed.</p>
 <h2 id="5-break-it-on-purpose-15-min">5. Break it on purpose (15 min)<a class="headerlink" href="#5-break-it-on-purpose-15-min" title="Permanent link">&para;</a></h2>
@@ -2457,7 +2474,7 @@ the model supports and it refuses to start, with a clear message.</p>
 <li>In <strong>Advanced settings</strong>, tick <strong>Add custom runtime arguments</strong> and enter <code>--max-model-len=8192</code>
    (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.</li>
 <li>Watch it fail: OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
-   the <code>tinyllama-predictor-…</code> pod → <strong>Logs</strong>. Find the line that explains why
+   the <code>&lt;resource name&gt;-predictor-…</code> pod (e.g. <code>tinyllama-predictor-…</code>) → <strong>Logs</strong>. Find the line that explains why
    (it names the model's maximum length).</li>
 <li>Edit again, untick <strong>Add custom runtime arguments</strong> (or remove the argument) and redeploy; the status returns to <strong>Started</strong>.</li>
 </ol>
