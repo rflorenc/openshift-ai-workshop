@@ -158,8 +158,9 @@ the model supports and it refuses to start, with a clear message.
    (TinyLlama's card says 2048). Save / **Redeploy**.
    > `exceeded quota: lab-quota` instead? The deployment uses **Rolling update**, which starts the new pod next to the
    > old one and goes over your CPU quota. Edit again → **Advanced settings** → Deployment strategy **Recreate** → save.
-3. Watch it fail: OpenShift console → project `<USER_NAME>-serving` → **Workloads → Pods** →
-   the `<MODEL_NAME>-predictor-…` pod → **Logs**. Find the line that explains why
+3. Watch it fail. The dashboard only says *Deployment does not have minimum availability*; the reason is in the log:
+   OpenShift console → project `<USER_NAME>-serving` → **Workloads → Pods** →
+   the `<MODEL_NAME>-predictor-…` pod (status *Error*, restarting) → **Logs**. Find the line that explains why
    (it names the model's maximum length).
 4. Edit again, untick **Add custom runtime arguments** (or remove the argument) and redeploy; the status returns to **Started**.
 
