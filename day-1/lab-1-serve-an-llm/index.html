@@ -2384,20 +2384,22 @@ and note its <strong>context length</strong> (you need it in step 5) and its lic
 <ol>
 <li>Log in to the OpenShift AI dashboard: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (user <code>&lt;USER_NAME&gt;</code>, password <code>&lt;PASSWORD&gt;</code>).</li>
 <li>Go to <strong>AI hub → Models</strong>, tab <strong>Catalog</strong>, and pick <strong>Workshop models</strong> in the row of categories (next to <em>Red Hat AI models</em> and <em>Other models</em>).
-   Open <strong>TinyLlama-1.1B-Chat-v1.0</strong>, read the card, then click <strong>Deploy</strong>.<blockquote>
+   Open <strong>TinyLlama-1.1B-Chat-v1.0</strong>, read the card, then click <strong>Deploy model</strong>. A five-step wizard opens:<blockquote>
 <p>Not in the catalog? Go to your project → <strong>Models → Deploy model</strong> and choose
 <strong>URI</strong> as the model location with <code>oci://quay.io/rh-aiservices-bu/tinyllama:1.0</code>. The rest is the same.</p>
 </blockquote>
 </li>
-<li>Project: <strong><code>&lt;USER_NAME&gt;-serving</code></strong>. Model deployment name: <strong><code>tinyllama</code></strong>
-   (click <strong>Edit resource name</strong> and make the resource name <code>tinyllama</code> as well).</li>
-<li>Hardware profile: the CPU profile. Expand <strong>Customize resource requests and limits</strong>:</li>
-<li>CPU request <strong>3</strong>, CPU limit <strong>4</strong></li>
-<li>Memory request <strong>6 GiB</strong>, memory limit <strong>8 GiB</strong></li>
-<li>Serving runtime: <strong>CUSTOM - vLLM Serving Runtime for CPU</strong>.</li>
-<li>Leave <strong>Make deployed models available through an external route</strong> and <strong>Require token
-   authentication</strong> unchecked: the model stays reachable only inside the cluster.</li>
-<li><strong>Deploy model</strong>, and wait until the status is <strong>Started</strong> (a few minutes: the model image is pulled first).</li>
+<li><strong>Preconfigure deployment</strong>: project <strong><code>&lt;USER_NAME&gt;-serving</code></strong>.</li>
+<li><strong>Model details</strong>: already filled from the catalog: location <strong>URI</strong> <code>oci://quay.io/rh-aiservices-bu/tinyllama:1.0</code>,
+   model type <strong>Generative AI model</strong>. Nothing to change.</li>
+<li><strong>Model deployment</strong>:</li>
+<li>Model deployment name <strong><code>tinyllama</code></strong> (click <strong>Edit resource name</strong> and make the resource name <code>tinyllama</code> as well)</li>
+<li>Hardware profile: the CPU profile; expand <strong>Customize resource requests and limits</strong>:
+     CPU request <strong>3</strong>, limit <strong>4</strong>; memory request <strong>6 GiB</strong>, limit <strong>8 GiB</strong></li>
+<li>Serving runtime: <strong>CUSTOM - vLLM Serving Runtime for CPU</strong></li>
+<li><strong>Advanced settings</strong>: leave <strong>external route</strong> and <strong>token authentication</strong> off (the model stays reachable
+   only inside the cluster) and the runtime arguments empty: you use them in part 5.</li>
+<li><strong>Review</strong> → <strong>Deploy</strong>, and wait until the status is <strong>Started</strong> (a few minutes: the model image is pulled first).</li>
 </ol>
 <p>What happened: OpenShift AI created a KServe <code>InferenceService</code> in your project; KServe started a
 vLLM pod with the model mounted from the OCI image (a "modelcar").</p>
