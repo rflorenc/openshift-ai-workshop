@@ -32,9 +32,8 @@
     - Leave it as max 20 GiB.
 
     **Connections**
-    - Select `Attach existing connections`
-  
-      From the dropdown menu, select `models` and click `Attach`
+    - Click `Attach existing connections`, select **`models`** (only this one) and click `Attach`.
+      The other connections (data, pipeline, ...) are used later by the pipelines, not by the workbench.
        
 ..and finally, hit `Create workbench`.
 
