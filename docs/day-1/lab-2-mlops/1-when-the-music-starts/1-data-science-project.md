@@ -1,6 +1,6 @@
 ## Data Science Project
 
-1. Login to [OpenShift AI](https://data-science-gateway.<CLUSTER_DOMAIN>). The link and the credentials will be provided by your instructor. You'll see there are already two `Data Science Projects` created for you. 
+1. Log in to [OpenShift AI](https://rh-ai.<CLUSTER_DOMAIN>) with your workshop user. Under `Projects` you'll see one project per lab, already created for you.
 
 ![datascienceproject.png](./images/datascienceproject.png)
 
@@ -15,10 +15,10 @@
     **Notebook Image:** 
 
     - Image selection: `Jupyter | Data Science | CPU | Python 3.12`
-    - Version selection: `2025.2`
+    - Version selection: the newest (`3.5`)
   
     **Deployment size**
-    - Hardware profile: `default`
+    - Hardware profile: `CPU only`
     - Expand `Customize resource requests and limits` to increase `Memory`:
       - **Memory requests:** `6 GiB`
       - **Memory limits:** `8 GiB`
@@ -48,12 +48,12 @@
     ![create-a-workbench-4.png](./images/create-a-workbench-4.png)
 -->
 
-1. A Git repository is already set up under your username in the Gitea server. You can verify it by logging in to Gitea [here](https://<GIT_SERVER>). Use the same username and password.
+5. A Git repository is already set up under your username in the Gitea server. You can verify it by logging in to Gitea [here](https://<GIT_SERVER>). Use the same username and password.
 
     ```bash
     https://<GIT_SERVER>
     ```
-2. Use the same credentials to log in and verify that your `jukebox` repository is there: it holds the notebooks and code for the next exercises. (The GitOps part of this course is shown by the instructor, so its repositories are not in your account.)
+6. Use the same credentials to log in and verify that your `jukebox` repository is there: it holds the notebooks and code for the next exercises. (The GitOps part of this course is shown by the instructor, so its repositories are not in your account.)
 
 7. Now, we'll begin by cloning the `Jukebox` repository, which contains the model source code. Go back to your Jupyter Notebook, click the Git icon, and use the link below (your copy in Gitea) to **clone** the repository.
 

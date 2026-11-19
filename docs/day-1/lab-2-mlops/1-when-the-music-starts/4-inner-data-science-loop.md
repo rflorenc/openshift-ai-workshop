@@ -1,5 +1,9 @@
 ## Data Science Inner Loop
 
+> **Before you start:** you need the workbench from [Data Science Project](1-data-science-project.md) (steps 3–7):
+> running, opened, and the `jukebox` repository cloned into it, so that the `jukebox` folder is in the left-hand
+> panel. All notebooks below are in that folder.
+
 As in the traditional software development world, here the inner loop represents the iterative process of building, testing, and refining machine learning models.
 
 This inner loop is essential in data science because it allows for continuous improvement and optimization of machine learning models. The main stages we usually see in building ML models are as below:
