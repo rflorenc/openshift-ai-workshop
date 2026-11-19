@@ -2393,12 +2393,19 @@ and note its <strong>context length</strong> (you need it in step 5) and its lic
 <li><strong>Model details</strong>: already filled from the catalog: location <strong>URI</strong> <code>oci://quay.io/rh-aiservices-bu/tinyllama:1.0</code>,
    model type <strong>Generative AI model</strong>. Nothing to change.</li>
 <li><strong>Model deployment</strong>:</li>
-<li>Model deployment name <strong><code>tinyllama</code></strong> (click <strong>Edit resource name</strong> and make the resource name <code>tinyllama</code> as well)</li>
-<li>Hardware profile: the CPU profile; expand <strong>Customize resource requests and limits</strong>:
-     CPU request <strong>3</strong>, limit <strong>4</strong>; memory request <strong>6 GiB</strong>, limit <strong>8 GiB</strong></li>
-<li>Serving runtime: <strong>CUSTOM - vLLM Serving Runtime for CPU</strong></li>
-<li><strong>Advanced settings</strong>: leave <strong>external route</strong> and <strong>token authentication</strong> off (the model stays reachable
-   only inside the cluster) and the runtime arguments empty: you use them in part 5.</li>
+<li>Model deployment name <strong><code>tinyllama</code></strong>. The resource name below it is generated from the catalog name
+     (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>): click <strong>Edit resource name</strong> and make it <strong><code>tinyllama</code></strong> as well</li>
+<li>Deployment method: <strong>Inference service</strong> (not <em>LLM inference service with llm-d</em>: that one is for distributed serving)</li>
+<li>Hardware profile: <strong>CPU only</strong>; expand <strong>Customize resource requests and limits</strong>:
+     CPU requests <strong>3</strong>, CPU limits <strong>4</strong>; memory requests <strong>6 GiB</strong>, memory limits <strong>8 GiB</strong></li>
+<li>Serving runtime template: <strong>Manual selection</strong> → <strong>CUSTOM - vLLM Serving Runtime for CPU</strong></li>
+<li>Replica count <strong>1</strong></li>
+<li><strong>Advanced settings</strong>:</li>
+<li>Model access (external route) and Token authentication: leave <strong>off</strong>; the model stays reachable only inside
+     the cluster</li>
+<li>Configuration parameters: leave <strong>Add custom runtime arguments</strong> unticked for now (you use it in part 5)</li>
+<li>Deployment strategy: <strong>Recreate</strong> (one pod at a time: fits your CPU quota, and makes part 5's failure visible)</li>
+<li>Optional: tick <strong>Add as AI asset endpoint</strong> to also chat with your model in <strong>Gen AI studio → Playground</strong></li>
 <li><strong>Review</strong> → <strong>Deploy</strong>, and wait until the status is <strong>Started</strong> (a few minutes: the model image is pulled first).</li>
 </ol>
 <p>What happened: OpenShift AI created a KServe <code>InferenceService</code> in your project; KServe started a
@@ -2444,13 +2451,13 @@ It looks like:</p>
 <p>vLLM reserves memory for the longest context it will accept (<code>--max-model-len</code>). Ask for more than
 the model supports and it refuses to start, with a clear message.</p>
 <ol>
-<li>Your project → <strong>Models</strong> → <code>tinyllama</code> → ⋮ → <strong>Edit</strong>.</li>
-<li>Under <strong>Additional serving runtime arguments</strong> add: <code>--max-model-len=8192</code>
-   (TinyLlama's card says 2048). <strong>Redeploy</strong>.</li>
+<li><strong>AI hub → Models → Deployments</strong> (or your project → <strong>Models</strong>) → <code>tinyllama</code> → ⋮ → <strong>Edit</strong>.</li>
+<li>In <strong>Advanced settings</strong>, tick <strong>Add custom runtime arguments</strong> and enter <code>--max-model-len=8192</code>
+   (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.</li>
 <li>Watch it fail: OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
    the <code>tinyllama-predictor-…</code> pod → <strong>Logs</strong>. Find the line that explains why
    (it names the model's maximum length).</li>
-<li>Remove the argument again and redeploy; the status returns to <strong>Started</strong>.</li>
+<li>Edit again, untick <strong>Add custom runtime arguments</strong> (or remove the argument) and redeploy; the status returns to <strong>Started</strong>.</li>
 </ol>
 <p>On a GPU the same setting decides how much GPU memory vLLM takes for the KV cache; too high is the
 most common reason a model does not start. Your instructor shows how to estimate it for a GPU model.</p>
