@@ -2290,7 +2290,7 @@
 
 <h2 id="data-science-project">Data Science Project<a class="headerlink" href="#data-science-project" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Login to <a href="https://data-science-gateway.&lt;CLUSTER_DOMAIN&gt;">OpenShift AI</a>. The link and the credentials will be provided by your instructor. You'll see there are already two <code>Data Science Projects</code> created for you. </li>
+<li>Log in to <a href="https://rh-ai.&lt;CLUSTER_DOMAIN&gt;">OpenShift AI</a> with your workshop user. Under <code>Projects</code> you'll see one project per lab, already created for you.</li>
 </ol>
 <p><img alt="datascienceproject.png" src="../images/datascienceproject.png" /></p>
 <ol>
@@ -2304,10 +2304,10 @@
 <div class="highlight"><pre><span></span><code>**Notebook Image:**
 
 - Image selection: `Jupyter | Data Science | CPU | Python 3.12`
-- Version selection: `2025.2`
+- Version selection: the newest (`3.5`)
 
 **Deployment size**
-- Hardware profile: `default`
+- Hardware profile: `CPU only`
 - Expand `Customize resource requests and limits` to increase `Memory`:
   - **Memory requests:** `6 GiB`
   - **Memory limits:** `8 GiB`
@@ -2343,7 +2343,7 @@
 <p>A Git repository is already set up under your username in the Gitea server. You can verify it by logging in to Gitea <a href="https://&lt;GIT_SERVER&gt;">here</a>. Use the same username and password.</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://&lt;GIT_SERVER&gt;
 </code></pre></div>
-2. Use the same credentials to log in and verify that your <code>jukebox</code> repository is there: it holds the notebooks and code for the next exercises. (The GitOps part of this course is shown by the instructor, so its repositories are not in your account.)</p>
+6. Use the same credentials to log in and verify that your <code>jukebox</code> repository is there: it holds the notebooks and code for the next exercises. (The GitOps part of this course is shown by the instructor, so its repositories are not in your account.)</p>
 </li>
 <li>
 <p>Now, we'll begin by cloning the <code>Jukebox</code> repository, which contains the model source code. Go back to your Jupyter Notebook, click the Git icon, and use the link below (your copy in Gitea) to <strong>clone</strong> the repository.</p>
