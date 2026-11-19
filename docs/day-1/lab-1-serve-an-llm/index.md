@@ -45,7 +45,7 @@ and note its **context length** (you need it in step 5) and its license.
 ## 2. Deploy TinyLlama (15 min)
 
 1. Log in to the OpenShift AI dashboard: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
-2. Go to **AI hub → Models** (the model catalog) and pick the source **Workshop models**.
+2. Go to **AI hub → Models**, tab **Catalog**, and pick **Workshop models** in the row of categories (next to *Red Hat AI models* and *Other models*).
    Open **TinyLlama-1.1B-Chat-v1.0**, read the card, then click **Deploy**.
    > Not in the catalog? Go to your project → **Models → Deploy model** and choose
    > **URI** as the model location with `oci://quay.io/rh-aiservices-bu/tinyllama:1.0`. The rest is the same.
