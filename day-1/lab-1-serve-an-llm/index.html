@@ -2394,10 +2394,11 @@ and note its <strong>context length</strong> (you need it in step 5) and its lic
    model type <strong>Generative AI model</strong>. Nothing to change.</li>
 <li><strong>Model deployment</strong>:</li>
 <li>
-<p>Model deployment name <strong><code>tinyllama</code></strong>. The resource name below it is generated from the catalog name
-     (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>): click <strong>Edit resource name</strong> and make it <strong><code>tinyllama</code></strong> as well</p>
+<p>Model deployment name: your <strong><code>&lt;MODEL_NAME&gt;</code></strong>, e.g. <code>tinyllama</code>. The resource name below it is generated from
+     the catalog name (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>): click <strong>Edit resource name</strong> and give it the same value.
+     From here on, <code>&lt;MODEL_NAME&gt;</code> in this guide means that name: it is also your model id and part of the endpoint</p>
 <p><img alt="Model deployment step: the name field, the generated resource name below it, Edit resource name" src="images/deploy-model-deployment.png" /></p>
-<p><em>Here the resource name is still the generated one: click <strong>Edit resource name</strong> and set it to <code>tinyllama</code>.</em></p>
+<p><em>Here the resource name is still the generated one: click <strong>Edit resource name</strong> and set it to your <code>&lt;MODEL_NAME&gt;</code>.</em></p>
 </li>
 <li>
 <p>Deployment method: <strong>Inference service</strong> (not <em>LLM inference service with llm-d</em>: that one is for distributed serving)</p>
@@ -2417,9 +2418,9 @@ and note its <strong>context length</strong> (you need it in step 5) and its lic
 <p>What happened: OpenShift AI created a KServe <code>InferenceService</code> in your project; KServe started a
 vLLM pod with the model mounted from the OCI image (a "modelcar").</p>
 <h2 id="3-find-the-endpoint-5-min">3. Find the endpoint (5 min)<a class="headerlink" href="#3-find-the-endpoint-5-min" title="Permanent link">&para;</a></h2>
-<p>In your project → <strong>Models</strong>, click <strong>Internal endpoint</strong> next to <code>tinyllama</code> and copy the URL.
+<p>In your project → <strong>Models</strong>, click <strong>Internal endpoint</strong> next to <code>&lt;MODEL_NAME&gt;</code> and copy the URL.
 It looks like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>http://tinyllama-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local[:port]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>http://&lt;MODEL_NAME&gt;-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local[:port]
 </code></pre></div>
 <p>The API is OpenAI-compatible, under <code>/v1</code>.</p>
 <h2 id="4-call-your-model-15-min">4. Call your model (15 min)<a class="headerlink" href="#4-call-your-model-15-min" title="Permanent link">&para;</a></h2>
@@ -2429,12 +2430,12 @@ It looks like:</p>
 <li>Open a <strong>Terminal</strong> in JupyterLab. Set <strong>your</strong> endpoint, the <strong>Internal endpoint</strong> you copied in part 3
    (without <code>/v1</code>), and list the models it serves:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENDPOINT</span><span class="o">=</span>http://tinyllama-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local<span class="w">   </span><span class="c1"># replace with your copied URL</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENDPOINT</span><span class="o">=</span>http://&lt;MODEL_NAME&gt;-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local<span class="w">   </span><span class="c1"># your copied URL</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
 </code></pre></div>
 <p><img alt="curl /v1/models in the workbench terminal" src="images/curl-models.png" /></p>
 <p><em>Example answer. The model <code>id</code> is the resource name of the deployment: here it was left at the generated name
-   (<code>tinyllamatinyllama-11b-chat-v1</code>); with the resource name <code>tinyllama</code> it reads <code>tinyllama</code>.</em>
+   (<code>tinyllamatinyllama-11b-chat-v1</code>); yours shows your <code>&lt;MODEL_NAME&gt;</code>.</em>
    <code>curl: (6) Could not resolve host</code> means the address does not match your deployment: copy it again.</p>
 <p>Keep the id in a variable, so the next commands use whatever your deployment is called:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MODEL</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">'import sys, json; print(json.load(sys.stdin)["data"][0]["id"])'</span><span class="k">)</span>
@@ -2470,11 +2471,11 @@ It looks like:</p>
 <p>vLLM reserves memory for the longest context it will accept (<code>--max-model-len</code>). Ask for more than
 the model supports and it refuses to start, with a clear message.</p>
 <ol>
-<li><strong>AI hub → Models → Deployments</strong> (or your project → <strong>Models</strong>) → <code>tinyllama</code> → ⋮ → <strong>Edit</strong>.</li>
+<li><strong>AI hub → Models → Deployments</strong> (or your project → <strong>Models</strong>) → <code>&lt;MODEL_NAME&gt;</code> → ⋮ → <strong>Edit</strong>.</li>
 <li>In <strong>Advanced settings</strong>, tick <strong>Add custom runtime arguments</strong> and enter <code>--max-model-len=8192</code>
    (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.</li>
 <li>Watch it fail: OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
-   the <code>&lt;resource name&gt;-predictor-…</code> pod (e.g. <code>tinyllama-predictor-…</code>) → <strong>Logs</strong>. Find the line that explains why
+   the <code>&lt;MODEL_NAME&gt;-predictor-…</code> pod → <strong>Logs</strong>. Find the line that explains why
    (it names the model's maximum length).</li>
 <li>Edit again, untick <strong>Add custom runtime arguments</strong> (or remove the argument) and redeploy; the status returns to <strong>Started</strong>.</li>
 </ol>
@@ -2482,7 +2483,7 @@ the model supports and it refuses to start, with a clear message.</p>
 most common reason a model does not start. Your instructor shows how to estimate it for a GPU model.</p>
 <h2 id="checkpoint">Checkpoint<a class="headerlink" href="#checkpoint" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>tinyllama</code> is <strong>Started</strong> in <code>&lt;USER_NAME&gt;-serving</code></li>
+<li><code>&lt;MODEL_NAME&gt;</code> is <strong>Started</strong> in <code>&lt;USER_NAME&gt;-serving</code></li>
 <li>you got a chat completion from it with <code>curl</code> and with the OpenAI client</li>
 <li>you saw, and can explain, the <code>--max-model-len</code> failure</li>
 </ul>
