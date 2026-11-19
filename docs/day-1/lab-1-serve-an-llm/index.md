@@ -90,15 +90,17 @@ The API is OpenAI-compatible, under `/v1`.
 
    ```bash
    export ENDPOINT=http://tinyllama-predictor.<USER_NAME>-serving.svc.cluster.local   # your copied URL
-   curl -s $ENDPOINT/v1/models | python3 -m json.tool
+   curl -sS $ENDPOINT/v1/models | python3 -m json.tool
    ```
 
-   The model id is `tinyllama`: the name you gave the deployment.
+   The model id is `tinyllama`: the resource name of your deployment. Use **your** copied endpoint: if the
+   resource name is still the generated one (e.g. `tinyllamatinyllama-11b-chat-v1`), both the address and the model id
+   carry that name. `curl: (6) Could not resolve host` means the address does not match your deployment.
 
 3. A chat completion:
 
    ```bash
-   curl -s $ENDPOINT/v1/chat/completions -H 'Content-Type: application/json' -d '{
+   curl -sS $ENDPOINT/v1/chat/completions -H 'Content-Type: application/json' -d '{
      "model": "tinyllama",
      "messages": [{"role": "system", "content": "You are a helpful assistant."},
                   {"role": "user", "content": "In two sentences: what is Kubernetes?"}],
