@@ -55,6 +55,11 @@ and note its **context length** (you need it in step 5) and its license.
 5. **Model deployment**:
    - Model deployment name **`tinyllama`**. The resource name below it is generated from the catalog name
      (e.g. `tinyllamatinyllama-11b-chat-v1`): click **Edit resource name** and make it **`tinyllama`** as well
+
+     ![Model deployment step: the name field, the generated resource name below it, Edit resource name](images/deploy-model-deployment.png)
+
+     *Here the resource name is still the generated one: click **Edit resource name** and set it to `tinyllama`.*
+
    - Deployment method: **Inference service** (not *LLM inference service with llm-d*: that one is for distributed serving)
    - Hardware profile: **CPU only**; expand **Customize resource requests and limits**:
      CPU requests **3**, CPU limits **4**; memory requests **6 GiB**, memory limits **8 GiB**
@@ -86,36 +91,53 @@ The API is OpenAI-compatible, under `/v1`.
 
 1. In `<USER_NAME>-serving` → **Workbenches → Create workbench**: name `client`, image
    **Jupyter | Minimal | CPU | Python 3.12** (or Data Science), the smallest size. Start it and open it.
-2. Open a **Terminal** in JupyterLab. Set the endpoint you copied (without `/v1`):
+2. Open a **Terminal** in JupyterLab. Set **your** endpoint, the **Internal endpoint** you copied in part 3
+   (without `/v1`), and list the models it serves:
 
    ```bash
-   export ENDPOINT=http://tinyllama-predictor.<USER_NAME>-serving.svc.cluster.local   # your copied URL
+   export ENDPOINT=http://tinyllama-predictor.<USER_NAME>-serving.svc.cluster.local   # replace with your copied URL
    curl -sS $ENDPOINT/v1/models | python3 -m json.tool
    ```
 
-   The model id is `tinyllama`: the resource name of your deployment. Use **your** copied endpoint: if the
-   resource name is still the generated one (e.g. `tinyllamatinyllama-11b-chat-v1`), both the address and the model id
-   carry that name. `curl: (6) Could not resolve host` means the address does not match your deployment.
+   ![curl /v1/models in the workbench terminal](images/curl-models.png)
+
+   *Example answer. The model `id` is the resource name of the deployment: here it was left at the generated name
+   (`tinyllamatinyllama-11b-chat-v1`); with the resource name `tinyllama` it reads `tinyllama`.*
+   `curl: (6) Could not resolve host` means the address does not match your deployment: copy it again.
+
+   Keep the id in a variable, so the next commands use whatever your deployment is called:
+
+   ```bash
+   export MODEL=$(curl -sS $ENDPOINT/v1/models | python3 -c 'import sys, json; print(json.load(sys.stdin)["data"][0]["id"])')
+   echo $MODEL
+   ```
 
 3. A chat completion:
 
    ```bash
-   curl -sS $ENDPOINT/v1/chat/completions -H 'Content-Type: application/json' -d '{
-     "model": "tinyllama",
-     "messages": [{"role": "system", "content": "You are a helpful assistant."},
-                  {"role": "user", "content": "In two sentences: what is Kubernetes?"}],
-     "max_tokens": 100}' | python3 -m json.tool
+   curl -sS $ENDPOINT/v1/chat/completions -H 'Content-Type: application/json' -d @- <<EOF | python3 -m json.tool
+   {"model": "$MODEL",
+    "messages": [{"role": "system", "content": "You are a helpful assistant."},
+                 {"role": "user", "content": "In two sentences: what is Kubernetes?"}],
+    "max_tokens": 100}
+   EOF
    ```
 
    Slower than a cloud endpoint: CPU inference. Note `usage` in the answer (prompt and completion tokens).
 
-4. The same from Python, with the OpenAI client (new notebook, or `python3` in the terminal):
+4. The same from Python, with the OpenAI client. The minimal image does not include it, so install it first, then
+   start `python3` in the same terminal (so `ENDPOINT` and `MODEL` are set):
+
+   ```bash
+   pip install -q openai
+   python3
+   ```
 
    ```python
    import os
-   from openai import OpenAI          # pip install openai, if the image lacks it
-   client = OpenAI(base_url=os.environ.get("ENDPOINT", "<your endpoint>") + "/v1", api_key="none")
-   r = client.chat.completions.create(model="tinyllama",
+   from openai import OpenAI
+   client = OpenAI(base_url=os.environ["ENDPOINT"] + "/v1", api_key="none")
+   r = client.chat.completions.create(model=os.environ["MODEL"],
          messages=[{"role": "user", "content": "Give me three names for a cat."}], max_tokens=60)
    print(r.choices[0].message.content)
    ```
@@ -131,7 +153,7 @@ the model supports and it refuses to start, with a clear message.
 2. In **Advanced settings**, tick **Add custom runtime arguments** and enter `--max-model-len=8192`
    (TinyLlama's card says 2048). Save / **Redeploy**.
 3. Watch it fail: OpenShift console → project `<USER_NAME>-serving` → **Workloads → Pods** →
-   the `tinyllama-predictor-…` pod → **Logs**. Find the line that explains why
+   the `<resource name>-predictor-…` pod (e.g. `tinyllama-predictor-…`) → **Logs**. Find the line that explains why
    (it names the model's maximum length).
 4. Edit again, untick **Add custom runtime arguments** (or remove the argument) and redeploy; the status returns to **Started**.
 
