@@ -2480,8 +2480,9 @@ the model supports and it refuses to start, with a clear message.</p>
 old one and goes over your CPU quota. Edit again → <strong>Advanced settings</strong> → Deployment strategy <strong>Recreate</strong> → save.</p>
 </blockquote>
 </li>
-<li>Watch it fail: OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
-   the <code>&lt;MODEL_NAME&gt;-predictor-…</code> pod → <strong>Logs</strong>. Find the line that explains why
+<li>Watch it fail. The dashboard only says <em>Deployment does not have minimum availability</em>; the reason is in the log:
+   OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
+   the <code>&lt;MODEL_NAME&gt;-predictor-…</code> pod (status <em>Error</em>, restarting) → <strong>Logs</strong>. Find the line that explains why
    (it names the model's maximum length).</li>
 <li>Edit again, untick <strong>Add custom runtime arguments</strong> (or remove the argument) and redeploy; the status returns to <strong>Started</strong>.</li>
 </ol>
