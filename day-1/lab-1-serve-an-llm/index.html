@@ -2423,13 +2423,15 @@ It looks like:</p>
 <li>Open a <strong>Terminal</strong> in JupyterLab. Set the endpoint you copied (without <code>/v1</code>):</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENDPOINT</span><span class="o">=</span>http://tinyllama-predictor.&lt;USER_NAME&gt;-serving.svc.cluster.local<span class="w">   </span><span class="c1"># your copied URL</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/models<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
 </code></pre></div>
-<p>The model id is <code>tinyllama</code>: the name you gave the deployment.</p>
+<p>The model id is <code>tinyllama</code>: the resource name of your deployment. Use <strong>your</strong> copied endpoint: if the
+   resource name is still the generated one (e.g. <code>tinyllamatinyllama-11b-chat-v1</code>), both the address and the model id
+   carry that name. <code>curl: (6) Could not resolve host</code> means the address does not match your deployment.</p>
 <ol>
 <li>A chat completion:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/chat/completions<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span><span class="nv">$ENDPOINT</span>/v1/chat/completions<span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="s1">  "model": "tinyllama",</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s1">  "messages": [{"role": "system", "content": "You are a helpful assistant."},</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s1">               {"role": "user", "content": "In two sentences: what is Kubernetes?"}],</span>
