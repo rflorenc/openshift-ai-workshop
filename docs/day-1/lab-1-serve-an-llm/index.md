@@ -53,12 +53,13 @@ and note its **context length** (you need it in step 5) and its license.
 4. **Model details**: already filled from the catalog: location **URI** `oci://quay.io/rh-aiservices-bu/tinyllama:1.0`,
    model type **Generative AI model**. Nothing to change.
 5. **Model deployment**:
-   - Model deployment name **`tinyllama`**. The resource name below it is generated from the catalog name
-     (e.g. `tinyllamatinyllama-11b-chat-v1`): click **Edit resource name** and make it **`tinyllama`** as well
+   - Model deployment name: your **`<MODEL_NAME>`**, e.g. `tinyllama`. The resource name below it is generated from
+     the catalog name (e.g. `tinyllamatinyllama-11b-chat-v1`): click **Edit resource name** and give it the same value.
+     From here on, `<MODEL_NAME>` in this guide means that name: it is also your model id and part of the endpoint
 
      ![Model deployment step: the name field, the generated resource name below it, Edit resource name](images/deploy-model-deployment.png)
 
-     *Here the resource name is still the generated one: click **Edit resource name** and set it to `tinyllama`.*
+     *Here the resource name is still the generated one: click **Edit resource name** and set it to your `<MODEL_NAME>`.*
 
    - Deployment method: **Inference service** (not *LLM inference service with llm-d*: that one is for distributed serving)
    - Hardware profile: **CPU only**; expand **Customize resource requests and limits**:
@@ -78,11 +79,11 @@ vLLM pod with the model mounted from the OCI image (a "modelcar").
 
 ## 3. Find the endpoint (5 min)
 
-In your project → **Models**, click **Internal endpoint** next to `tinyllama` and copy the URL.
+In your project → **Models**, click **Internal endpoint** next to `<MODEL_NAME>` and copy the URL.
 It looks like:
 
 ```
-http://tinyllama-predictor.<USER_NAME>-serving.svc.cluster.local[:port]
+http://<MODEL_NAME>-predictor.<USER_NAME>-serving.svc.cluster.local[:port]
 ```
 
 The API is OpenAI-compatible, under `/v1`.
@@ -95,14 +96,14 @@ The API is OpenAI-compatible, under `/v1`.
    (without `/v1`), and list the models it serves:
 
    ```bash
-   export ENDPOINT=http://tinyllama-predictor.<USER_NAME>-serving.svc.cluster.local   # replace with your copied URL
+   export ENDPOINT=http://<MODEL_NAME>-predictor.<USER_NAME>-serving.svc.cluster.local   # your copied URL
    curl -sS $ENDPOINT/v1/models | python3 -m json.tool
    ```
 
    ![curl /v1/models in the workbench terminal](images/curl-models.png)
 
    *Example answer. The model `id` is the resource name of the deployment: here it was left at the generated name
-   (`tinyllamatinyllama-11b-chat-v1`); with the resource name `tinyllama` it reads `tinyllama`.*
+   (`tinyllamatinyllama-11b-chat-v1`); yours shows your `<MODEL_NAME>`.*
    `curl: (6) Could not resolve host` means the address does not match your deployment: copy it again.
 
    Keep the id in a variable, so the next commands use whatever your deployment is called:
@@ -149,11 +150,11 @@ The API is OpenAI-compatible, under `/v1`.
 vLLM reserves memory for the longest context it will accept (`--max-model-len`). Ask for more than
 the model supports and it refuses to start, with a clear message.
 
-1. **AI hub → Models → Deployments** (or your project → **Models**) → `tinyllama` → ⋮ → **Edit**.
+1. **AI hub → Models → Deployments** (or your project → **Models**) → `<MODEL_NAME>` → ⋮ → **Edit**.
 2. In **Advanced settings**, tick **Add custom runtime arguments** and enter `--max-model-len=8192`
    (TinyLlama's card says 2048). Save / **Redeploy**.
 3. Watch it fail: OpenShift console → project `<USER_NAME>-serving` → **Workloads → Pods** →
-   the `<resource name>-predictor-…` pod (e.g. `tinyllama-predictor-…`) → **Logs**. Find the line that explains why
+   the `<MODEL_NAME>-predictor-…` pod → **Logs**. Find the line that explains why
    (it names the model's maximum length).
 4. Edit again, untick **Add custom runtime arguments** (or remove the argument) and redeploy; the status returns to **Started**.
 
@@ -162,7 +163,7 @@ most common reason a model does not start. Your instructor shows how to estimate
 
 ## Checkpoint
 
-- `tinyllama` is **Started** in `<USER_NAME>-serving`
+- `<MODEL_NAME>` is **Started** in `<USER_NAME>-serving`
 - you got a chat completion from it with `curl` and with the OpenAI client
 - you saw, and can explain, the `--max-model-len` failure
 
