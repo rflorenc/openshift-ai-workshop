@@ -28,27 +28,21 @@ We'll build a **knowledge-based chatbot** that can:
 
 This requires the agent to reason about when to search vs. when to schedule - perfect for demonstrating LangGraph's simplicity!
 
-## Enable MCP in LlamaStack
+## MCP is already enabled in your Llama Stack
 
-Before we start, we need to enable MCP support in your Llama Stack instance:
+Your Llama Stack instance was installed with MCP support switched on, so it knows the MCP Calendar tool that
+LangGraph will use (the calendar server you deployed in notebook 2). Have a look:
 
-1. Go to **OpenShift Console** → **Helm** → **Releases**
+1. In the **OpenShift Console**, project `<USER_NAME>-canopy`, open **Workloads** → **ConfigMaps** → **`ogx-config`**
+   (the Llama Stack configuration, created by the Helm release `llama-stack-operator-instance`).
+2. In `config.yaml`, find `tool_groups`: it contains `mcp::canopy-calendar`, pointing at
+   `http://canopy-mcp-calendar-mcp-server:8080/sse`.
 
-    ![helm-release-2.png](images/helm-release-2.png)
-
-2. Find `llama-stack-operator-instance`, click the **three dots** → **Upgrade**
-
-    ![upgrade-lls](images/upgrade-lls.png)
-
-3. In the Form view, open the **MCP section**, select **`enabled`**, and click **Upgrade**
-
-    ![enable-mcp](images/enable-mcp.png)
-
-This enables our MCP Calendar tool that LangGraph will use.
+Please don't use **Upgrade** on this release: it was installed from the workshop's own copy of the chart.
 
 ## Why Llama Stack?
 
-Llama Stack does three things here that make the difference: it serves the model, manages the RAG vector store, and ✨crucially✨ exposes a **Responses API** that goes beyond standard Chat Completions. With standard Chat Completions, you'd have to write a Python wrapper function for every tool an MCP server exposes (the same manual approach you used when building the ReAct agent from scratch). The Responses API skips all of that: you pass it an MCP server binding, and it discovers the available tools and handles execution automatically. Llama Stack knows about the calendar server because the Helm upgrade you just did registered it as a `tool_group` at startup.
+Llama Stack does three things here that make the difference: it serves the model, manages the RAG vector store, and ✨crucially✨ exposes a **Responses API** that goes beyond standard Chat Completions. With standard Chat Completions, you'd have to write a Python wrapper function for every tool an MCP server exposes (the same manual approach you used when building the ReAct agent from scratch). The Responses API skips all of that: you pass it an MCP server binding, and it discovers the available tools and handles execution automatically. Llama Stack knows about the calendar server because it is registered as a `tool_group` in its configuration (`ogx-config`).
 
 LangGraph does have its own MCP support and could connect directly to the model without Llama Stack. The reason we use it here is that it's already the platform underneath everything: the model, the vector store, the MCP connections. So infrastructure concerns stay in one place rather than scattered across your application code. Swapping a model or MCP server becomes a config change, not a code change.
 
