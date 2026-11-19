@@ -2180,10 +2180,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-mcp-in-llamastack" class="md-nav__link">
+  <a href="#mcp-is-already-enabled-in-your-llama-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable MCP in LlamaStack
+        MCP is already enabled in your Llama Stack
       
     </span>
   </a>
@@ -2351,10 +2351,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-mcp-in-llamastack" class="md-nav__link">
+  <a href="#mcp-is-already-enabled-in-your-llama-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable MCP in LlamaStack
+        MCP is already enabled in your Llama Stack
       
     </span>
   </a>
@@ -2422,25 +2422,18 @@ Agentic frameworks abstract away so you can focus on <strong>what</strong> your 
 1. Search documents for information (RAG)
 2. Schedule meetings with professors if it can't answer the question</p>
 <p>This requires the agent to reason about when to search vs. when to schedule - perfect for demonstrating LangGraph's simplicity!</p>
-<h2 id="enable-mcp-in-llamastack">Enable MCP in LlamaStack<a class="headerlink" href="#enable-mcp-in-llamastack" title="Permanent link">&para;</a></h2>
-<p>Before we start, we need to enable MCP support in your Llama Stack instance:</p>
+<h2 id="mcp-is-already-enabled-in-your-llama-stack">MCP is already enabled in your Llama Stack<a class="headerlink" href="#mcp-is-already-enabled-in-your-llama-stack" title="Permanent link">&para;</a></h2>
+<p>Your Llama Stack instance was installed with MCP support switched on, so it knows the MCP Calendar tool that
+LangGraph will use (the calendar server you deployed in notebook 2). Have a look:</p>
 <ol>
-<li>
-<p>Go to <strong>OpenShift Console</strong> → <strong>Helm</strong> → <strong>Releases</strong></p>
-<p><img alt="helm-release-2.png" src="../images/helm-release-2.png" /></p>
-</li>
-<li>
-<p>Find <code>llama-stack-operator-instance</code>, click the <strong>three dots</strong> → <strong>Upgrade</strong></p>
-<p><img alt="upgrade-lls" src="../images/upgrade-lls.png" /></p>
-</li>
-<li>
-<p>In the Form view, open the <strong>MCP section</strong>, select <strong><code>enabled</code></strong>, and click <strong>Upgrade</strong></p>
-<p><img alt="enable-mcp" src="../images/enable-mcp.png" /></p>
-</li>
+<li>In the <strong>OpenShift Console</strong>, project <code>&lt;USER_NAME&gt;-canopy</code>, open <strong>Workloads</strong> → <strong>ConfigMaps</strong> → <strong><code>ogx-config</code></strong>
+   (the Llama Stack configuration, created by the Helm release <code>llama-stack-operator-instance</code>).</li>
+<li>In <code>config.yaml</code>, find <code>tool_groups</code>: it contains <code>mcp::canopy-calendar</code>, pointing at
+   <code>http://canopy-mcp-calendar-mcp-server:8080/sse</code>.</li>
 </ol>
-<p>This enables our MCP Calendar tool that LangGraph will use.</p>
+<p>Please don't use <strong>Upgrade</strong> on this release: it was installed from the workshop's own copy of the chart.</p>
 <h2 id="why-llama-stack">Why Llama Stack?<a class="headerlink" href="#why-llama-stack" title="Permanent link">&para;</a></h2>
-<p>Llama Stack does three things here that make the difference: it serves the model, manages the RAG vector store, and ✨crucially✨ exposes a <strong>Responses API</strong> that goes beyond standard Chat Completions. With standard Chat Completions, you'd have to write a Python wrapper function for every tool an MCP server exposes (the same manual approach you used when building the ReAct agent from scratch). The Responses API skips all of that: you pass it an MCP server binding, and it discovers the available tools and handles execution automatically. Llama Stack knows about the calendar server because the Helm upgrade you just did registered it as a <code>tool_group</code> at startup.</p>
+<p>Llama Stack does three things here that make the difference: it serves the model, manages the RAG vector store, and ✨crucially✨ exposes a <strong>Responses API</strong> that goes beyond standard Chat Completions. With standard Chat Completions, you'd have to write a Python wrapper function for every tool an MCP server exposes (the same manual approach you used when building the ReAct agent from scratch). The Responses API skips all of that: you pass it an MCP server binding, and it discovers the available tools and handles execution automatically. Llama Stack knows about the calendar server because it is registered as a <code>tool_group</code> in its configuration (<code>ogx-config</code>).</p>
 <p>LangGraph does have its own MCP support and could connect directly to the model without Llama Stack. The reason we use it here is that it's already the platform underneath everything: the model, the vector store, the MCP connections. So infrastructure concerns stay in one place rather than scattered across your application code. Swapping a model or MCP server becomes a config change, not a code change.</p>
 <h2 id="lets-build-it">Let's Build It!<a class="headerlink" href="#lets-build-it" title="Permanent link">&para;</a></h2>
 <p>Ready to see how much easier this gets? You'll build the same agentic capabilities with <strong>~70% less code</strong>. Just clean, declarative agent definitions.<br />
