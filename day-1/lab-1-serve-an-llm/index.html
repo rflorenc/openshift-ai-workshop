@@ -2475,7 +2475,11 @@ the model supports and it refuses to start, with a clear message.</p>
 <ol>
 <li><strong>AI hub → Models → Deployments</strong> (or your project → <strong>Models</strong>) → <code>&lt;MODEL_NAME&gt;</code> → ⋮ → <strong>Edit</strong>.</li>
 <li>In <strong>Advanced settings</strong>, tick <strong>Add custom runtime arguments</strong> and enter <code>--max-model-len=8192</code>
-   (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.</li>
+   (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.<blockquote>
+<p><code>exceeded quota: lab-quota</code> instead? The deployment uses <strong>Rolling update</strong>, which starts the new pod next to the
+old one and goes over your CPU quota. Edit again → <strong>Advanced settings</strong> → Deployment strategy <strong>Recreate</strong> → save.</p>
+</blockquote>
+</li>
 <li>Watch it fail: OpenShift console → project <code>&lt;USER_NAME&gt;-serving</code> → <strong>Workloads → Pods</strong> →
    the <code>&lt;MODEL_NAME&gt;-predictor-…</code> pod → <strong>Logs</strong>. Find the line that explains why
    (it names the model's maximum length).</li>
