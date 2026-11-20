@@ -2249,7 +2249,11 @@
 </li>
 <li>
 <p>Wait for the upload to finish and then try asking the same thing again. Do you get a better answer this time? You should see the response is ✨ grounded ✨ on the PDF you provided :)</p>
-<p>Tip: click <strong>New chat</strong> before each new question while Knowledge is on. Every answer carries the PDF chunks it retrieved, and a long chat can grow past what the model accepts; when that happens the reply comes back empty, with only its timing shown.</p>
+<blockquote>
+<p><strong>"Something went wrong … 400 Bad Request"?</strong> The question plus the PDF chunks the search added were too long
+for the model (the chat history counts too). Click <strong>New chat</strong> (top right) and ask the question again, as the
+only question in that chat. Ask one question per chat while Knowledge is on.</p>
+</blockquote>
 </li>
 </ol>
 <p>Now that we have seen RAG in practice, let's build it ourselves, step by step.</p>
