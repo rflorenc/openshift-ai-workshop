@@ -2231,11 +2231,11 @@
 <p>Let's start by moving some data into the bucket.</p>
 <ol>
 <li>
-<p>Go to <code>OpenShift AI Dashboard</code> &gt;  <code>Projects</code> &gt; <code>&lt;USER_NAME&gt;-jukebox</code> &gt; <code>Workbenches</code> and connect to your first Jupyter notebook workbench, the one running <code>Jupyter | Data Science</code> Notebook image.</p>
-<p>Open up <code>jukebox/5-data-versioning/1-data_pipeline_url_to_s3.py</code> file. This pipeline will move the song properties data we currently have in GitHub over to our S3 bucket <code>data</code>. </p>
-<p>Click ▶️ on Run button to start the pipeline.</p>
-<p><img alt="data-pipeline.png" src="../images/data-pipeline.png" /></p>
-<p>This will trigger the pipeline that you can view on <code>OpenShift AI Dashboard</code> &gt; <code>Pipelines</code> &gt; <code>Runs</code> in your <code>&lt;USER_NAME&gt;-jukebox</code> project.</p>
+<p>In your workbench terminal, run the pipeline <code>jukebox/5-data-versioning/1-data_pipeline_url_to_s3.py</code>. It copies
+   the song properties data from GitHub into your S3 bucket <code>data</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>~/jukebox/5-data-versioning<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python<span class="w"> </span><span class="m">1</span>-data_pipeline_url_to_s3.py
+</code></pre></div>
+<p>This will trigger the pipeline that you can view in the dashboard under <code>Develop &amp; train</code> &gt; <code>Pipelines</code> &gt; <code>Runs</code> in your <code>&lt;USER_NAME&gt;-jukebox</code> project.</p>
 <p><img alt="etl-pipeline.png" src="../images/etl-pipeline.png" /></p>
 <p>Let's wait for it to complete successfully.</p>
 <p><img alt="etl-pipeline-2.png" src="../images/etl-pipeline-2.png" /></p>
