@@ -2405,39 +2405,31 @@ panel. All notebooks below are in that folder.</p>
 <p>Let's give it a try:</p>
 <ol>
 <li>
-<p>Go to Model Registry and find the model you just registered. Click <code>Deploy</code> and select <code>&lt;USER_NAME&gt;-jukebox</code> as your target project to deploy the model.</p>
+<p>In <code>AI hub</code> &gt; <code>Registry</code>, open your <code>jukebox</code> model, version <code>0.0.1</code>, and click <code>Deploy</code>.</p>
 <p><img alt="deploy-from-registry.png" src="../images/deploy-from-registry.png" /></p>
 </li>
 <li>
-<p>You'll see that model location information is already filled out for us. Then you can select <code>Predictive model</code> as the Model type, and click <code>Next</code></p>
-<p><img alt="deploy-model-form-1.png" src="../images/deploy-model-form-1.png" /></p>
+<p><strong>Preconfigure deployment</strong>: project <strong><code>&lt;USER_NAME&gt;-jukebox</code></strong>.</p>
+</li>
+<li><strong>Model details</strong>: the model location is already filled in from the registry. Model type: <strong>Predictive model</strong>.</li>
+<li><strong>Model deployment</strong>:<ul>
+<li>Model deployment name: <strong><code>jukebox</code></strong></li>
+<li>Hardware profile: <strong>CPU only</strong></li>
+<li>Model framework (name - version): <strong><code>onnx - 1</code></strong></li>
+<li>Serving runtime template: <strong>Manual selection</strong> → <strong>OpenVINO Model Server</strong></li>
+<li>Replica count: <code>1</code></li>
+</ul>
+</li>
+<li><strong>Advanced settings</strong>: tick <strong>Make deployed models available through an external route</strong>, leave <strong>Require token
+   authentication</strong> unticked.</li>
+<li>
+<p><strong>Review</strong> → <strong>Deploy</strong>.</p>
 </li>
 <li>
-<p>Make sure that you update <strong>Model deployment name</strong> as <code>jukebox</code>, and for <strong>Model framework (name - version)</strong> pick <code>onnx-1</code>.</p>
-<p><img alt="deploy-model-form-2.png" src="../images/deploy-model-form-2.png" /></p>
-<p>And click <code>Next</code>.</p>
+<p>Wait until the status is <strong>Started</strong> (a minute or two: the runtime image is pulled and the model downloaded from
+   the bucket; refresh the page if needed).</p>
+<p><img alt="jukebox-deployed.png" src="../images/jukebox-deployed.png" /></p>
 </li>
-<li>
-<p>For Model access:</p>
-</li>
-<li>Select <code>Make deployed models available through an external route</code></li>
-<li>
-<p><strong>Uncheck</strong> Require token authentication for now</p>
-<p><img alt="deploy-model-form-3.png" src="../images/deploy-model-form-3.png" /></p>
-<p>And one last time, click <code>Next</code>.</p>
-</li>
-<li>
-<p>Review your inputs and click <code>Deploy model</code>.</p>
-<p><img alt="deploy-model-form-4.png" src="../images/deploy-model-form-4.png" /></p>
-</li>
-<li>
-<p>It might take some time due to all the things OpenShift AI does in the background (pulling the runtime image, downloading your model from the bucket, copying the model to the correct folder, and starting the runtime). But eventually, you’ll get an endpoint that allows you to interact with the model! </p>
-</li>
-</ol>
-<p>You can also try refreshing the page if it's taking too long.</p>
-<div class="highlight"><pre><span></span><code>![jukebox-deployed.png](./images/jukebox-deployed.png)
-</code></pre></div>
-<ol>
 <li>
 <p>Copy the <strong>External URL</strong> and return to your Workbench. Open the <code>jukebox/2-dev_datascience/3-request_model.ipynb</code> notebook and follow the instructions to make some sweet predictions 🎶</p>
 <p><img alt="jukebox-deployed-2.png" src="../images/jukebox-deployed-2.png" /></p>
