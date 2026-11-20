@@ -2249,6 +2249,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-youre-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When you're done
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#if-something-goes-wrong" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2287,6 +2298,9 @@ copies per person.</p>
 Your project for this lab: <strong><code>&lt;USER_NAME&gt;-coco</code></strong>.</p>
 <h2 id="1-create-the-workbench-10-min">1. Create the workbench (10 min)<a class="headerlink" href="#1-create-the-workbench-10-min" title="Permanent link">&para;</a></h2>
 <ol>
+<li>Free up resources from Labs 1 and 2 (they are not needed again; nothing is lost, <strong>Start</strong> brings them back):</li>
+<li><strong>Projects</strong> → <code>&lt;USER_NAME&gt;-serving</code> and <code>&lt;USER_NAME&gt;-jukebox</code> → <strong>Workbenches</strong>: <strong>Stop</strong> each workbench</li>
+<li><strong>AI hub → Models → Deployments</strong>: <strong>Stop</strong> on your <code>tinyllama</code> and <code>jukebox</code> rows</li>
 <li>OpenShift AI dashboard <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> → project <strong><code>&lt;USER_NAME&gt;-coco</code></strong> →
    <strong>Workbenches → Create workbench</strong>:</li>
 <li>Name: <strong><code>coco</code></strong></li>
@@ -2348,6 +2362,8 @@ them to fetch the data from the shared store.</p>
 <li>the average BLEU and cosine scores printed (for reference: BLEU ~0.2, cosine ~0.67)</li>
 <li>you can say which step needed the GPU and how much GPU memory it used</li>
 </ul>
+<h2 id="when-youre-done">When you're done<a class="headerlink" href="#when-youre-done" title="Permanent link">&para;</a></h2>
+<p><strong>Stop</strong> your <code>coco</code> workbench (project <code>&lt;USER_NAME&gt;-coco</code> → Workbenches → Stop): it gives the GPU back for the next person.</p>
 <h2 id="if-something-goes-wrong">If something goes wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Workbench stuck in <strong>Pending</strong>: no free GPU right now, tell your instructor (GPUs are shared out in turns).</li>
