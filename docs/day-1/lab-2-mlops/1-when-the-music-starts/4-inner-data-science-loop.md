@@ -78,38 +78,27 @@ Now that we have our model artifacts saved in a bucket, we can deploy it in our 
 
 Let's give it a try:
 
-1. Go to Model Registry and find the model you just registered. Click `Deploy` and select `<USER_NAME>-jukebox` as your target project to deploy the model.
-   
+1. In `AI hub` > `Registry`, open your `jukebox` model, version `0.0.1`, and click `Deploy`.
+
     ![deploy-from-registry.png](./images/deploy-from-registry.png)
 
-2. You'll see that model location information is already filled out for us. Then you can select `Predictive model` as the Model type, and click `Next`
+2. **Preconfigure deployment**: project **`<USER_NAME>-jukebox`**.
+3. **Model details**: the model location is already filled in from the registry. Model type: **Predictive model**.
+4. **Model deployment**:
+    - Model deployment name: **`jukebox`**
+    - Hardware profile: **CPU only**
+    - Model framework (name - version): **`onnx - 1`**
+    - Serving runtime template: **Manual selection** → **OpenVINO Model Server**
+    - Replica count: `1`
+5. **Advanced settings**: tick **Make deployed models available through an external route**, leave **Require token
+   authentication** unticked.
+6. **Review** → **Deploy**.
 
-    ![deploy-model-form-1.png](./images/deploy-model-form-1.png)
-
-3. Make sure that you update **Model deployment name** as `jukebox`, and for **Model framework (name - version)** pick `onnx-1`.
-
-    ![deploy-model-form-2.png](./images/deploy-model-form-2.png)
-
-    And click `Next`.
-
-4. For Model access:
-  -  Select `Make deployed models available through an external route`
-  -  **Uncheck** Require token authentication for now
-
-    ![deploy-model-form-3.png](./images/deploy-model-form-3.png)
-
-    And one last time, click `Next`.
-
-5. Review your inputs and click `Deploy model`.
-
-    ![deploy-model-form-4.png](./images/deploy-model-form-4.png)
-
-6. It might take some time due to all the things OpenShift AI does in the background (pulling the runtime image, downloading your model from the bucket, copying the model to the correct folder, and starting the runtime). But eventually, you’ll get an endpoint that allows you to interact with the model! 
-   
-You can also try refreshing the page if it's taking too long.
+7. Wait until the status is **Started** (a minute or two: the runtime image is pulled and the model downloaded from
+   the bucket; refresh the page if needed).
 
     ![jukebox-deployed.png](./images/jukebox-deployed.png)
 
-7. Copy the **External URL** and return to your Workbench. Open the `jukebox/2-dev_datascience/3-request_model.ipynb` notebook and follow the instructions to make some sweet predictions 🎶
+8. Copy the **External URL** and return to your Workbench. Open the `jukebox/2-dev_datascience/3-request_model.ipynb` notebook and follow the instructions to make some sweet predictions 🎶
 
     ![jukebox-deployed-2.png](./images/jukebox-deployed-2.png)
