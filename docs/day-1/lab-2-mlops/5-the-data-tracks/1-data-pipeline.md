@@ -6,17 +6,14 @@ For this, we will have a S3 bucket that can hold our data, and we will version t
 
 Let's start by moving some data into the bucket.
 
-1. Go to `OpenShift AI Dashboard` >  `Projects` > `<USER_NAME>-jukebox` > `Workbenches` and connect to your first Jupyter notebook workbench, the one running `Jupyter | Data Science` Notebook image.
+1. In your workbench terminal, run the pipeline `jukebox/5-data-versioning/1-data_pipeline_url_to_s3.py`. It copies
+   the song properties data from GitHub into your S3 bucket `data`:
 
-    Open up `jukebox/5-data-versioning/1-data_pipeline_url_to_s3.py` file. This pipeline will move the song properties data we currently have in GitHub over to our S3 bucket `data`. 
-    
-    
+    ```bash
+    cd ~/jukebox/5-data-versioning && python 1-data_pipeline_url_to_s3.py
+    ```
 
-    Click ▶️ on Run button to start the pipeline.
-
-    ![data-pipeline.png](./images/data-pipeline.png)
-
-    This will trigger the pipeline that you can view on `OpenShift AI Dashboard` > `Pipelines` > `Runs` in your `<USER_NAME>-jukebox` project.
+    This will trigger the pipeline that you can view in the dashboard under `Develop & train` > `Pipelines` > `Runs` in your `<USER_NAME>-jukebox` project.
 
     ![etl-pipeline.png](./images/etl-pipeline.png)
 
