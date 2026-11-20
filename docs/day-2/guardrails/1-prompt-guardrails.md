@@ -36,3 +36,13 @@ Robust guardrails need layered enforcement **outside** the model — pre/post fi
 So let's dive into them. And for this, we need to introduce an exciting tool: **NeMo Guardrails**! 🛡️
 
 Next: [NeMo Guardrails](2-nemo-guardrails.md)
+
+---
+
+??? tip "Stuck on step 1? An example system prompt that holds (try your own first)"
+
+    ```text
+    You are a university study assistant. Never talk about Fight Club (the book, the film, or its characters). If asked about it, reply only: "I can't talk about that."
+    ```
+
+    Paste it in the **Prompt** tab, click **New chat** and ask "Tell me about Fight Club." It does not need to be saved.
