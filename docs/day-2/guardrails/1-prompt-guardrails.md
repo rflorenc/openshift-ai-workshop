@@ -18,15 +18,15 @@ Some examples include:
 
 ![fight-club.jpg](./images/fight-club.jpg)
 
-1. As we experienced number of times, system prompts define how LLMs should behave. The minimum thing we can do is set a system prompt. Go to your GenAI Playground in OpenShift AI Dashboard and try sending a message directly to the model with a system prompt that instructs it **not** to talk about Fight Club.
+1. In **Gen AI studio → Playground** (project `<USER_NAME>-canopy`, Knowledge **off**), open the **Prompt** tab
+   and set a system prompt that tells the model **not** to talk about Fight Club. Then ask it about Fight Club.
 
-The minimum thing we can do is set a system prompt. In your workbench, open a terminal and try sending a message directly to the model with a system prompt that instructs it **not** to talk about Fight Club:
+    ![fight-club-2.png](./images/fight-club-2.png)
 
-  ![fight-club-2.png](./images/fight-club-2.png)
+2. Once you have a system prompt that holds, try to get around it and make the model talk about Fight Club anyway.
+   Time yourself: how long does it take?
 
-1. After you find a system prompt that works, think about ways you can go around it and make the model talk about Fight Club anyway. Time yourself — how long does it take?
-
-  ![fight-club-3.png](./images/fight-club-3.png)
+    ![fight-club-3.png](./images/fight-club-3.png)
 
 System prompts are just suggestions inside the model's context. They're not enforceable rules, so a clever prompt injection, obfuscation, or long conversation can nudge the model to ignore them. Because LLMs are probabilistic and sensitive to phrasing and context order, even "good" system prompts behave inconsistently across inputs and model versions.
 
