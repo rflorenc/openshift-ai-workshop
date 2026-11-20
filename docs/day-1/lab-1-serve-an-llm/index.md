@@ -165,7 +165,7 @@ the model supports and it refuses to start, with a clear message.
 4. Edit again, untick **Add custom runtime arguments** (or remove the argument) and redeploy; the status returns to **Started**.
 
 On a GPU the same setting decides how much GPU memory vLLM takes for the KV cache; too high is the
-most common reason a model does not start. Your instructor shows how to estimate it for a GPU model.
+most common reason a model does not start.
 
 ## Checkpoint
 

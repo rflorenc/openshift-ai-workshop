@@ -1,6 +1,6 @@
 ## Data Science Inner Loop
 
-> **Before you start:** you need the workbench from [Data Science Project](1-data-science-project.md) (steps 3–7):
+> **Before you start:** you need the workbench from [Data Science Project](1-data-science-project.md) (steps 3–6):
 > running, opened, and the `jukebox` repository cloned into it, so that the `jukebox` folder is in the left-hand
 > panel. All notebooks below are in that folder.
 

@@ -47,14 +47,9 @@
     ![create-a-workbench-4.png](./images/create-a-workbench-4.png)
 -->
 
-5. A Git repository is already set up under your username in the Gitea server. You can verify it by logging in to Gitea [here](https://<GIT_SERVER>). Use the same username and password.
+5. Your `jukebox` repository (notebooks and code) is already in the Git server: [https://<GIT_SERVER>](https://<GIT_SERVER>), same username and password.
 
-    ```bash
-    https://<GIT_SERVER>
-    ```
-6. Use the same credentials to log in and verify that your `jukebox` repository is there: it holds the notebooks and code for the next exercises. (The GitOps part of this course is shown by the instructor, so its repositories are not in your account.)
-
-7. Now, we'll begin by cloning the `Jukebox` repository, which contains the model source code. Go back to your Jupyter Notebook, click the Git icon, and use the link below (your copy in Gitea) to **clone** the repository.
+6. In your workbench, click the Git icon and **clone** your copy:
 
     ```bash
     https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/jukebox.git
@@ -66,4 +61,4 @@
 
     ![jupyter-notebook-ui.png](./images/jupyter-notebook-ui.png)
 
-8. Before we get hands-on and start experimenting, let's learn about the storage environment available for us in the next chapter. 🫡
+7. Next: the storage you'll use. 🫡

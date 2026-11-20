@@ -5,8 +5,7 @@
 
 You take a music-genre classifier ("Jukebox") from a notebook to production the MLOps way: a data
 science project with its connections, experiments in a workbench, a training pipeline in **Kubeflow
-Pipelines**, a small data pipeline, and the model registered and served. The GitOps part (from studio
-to stage) is shown by the instructor.
+Pipelines**, a small data pipeline, and the model registered and served.
 
 Your project for this lab: **`<USER_NAME>-jukebox`**.
 
