@@ -16,6 +16,3 @@ container images come from the same projects ([rhoai-genaiops](https://github.co
 
 Lab 3 uses the [COCO dataset](https://cocodataset.org) (Creative Commons Attribution 4.0) and a pretrained
 ResNet152 from [torchvision](https://pytorch.org/vision/).
-
-The difficulty levels and the "blocked / bypassed / no rails" scoring in *Guardrails: break the bot* are
-adapted from the attack demo in [TableSchnappi](https://github.com/KiriGould/tableschnappi) by Kyra Goud (MIT).
