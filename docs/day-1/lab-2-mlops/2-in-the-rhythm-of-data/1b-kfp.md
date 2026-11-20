@@ -24,38 +24,17 @@ Now that you know what the pipeline is supposed to do, let's go ahead and run it
 
     ![kfp.png](./images/kfp.png)
 
-2. Update the pipeline definition with the cluster domain as you did in the inner loop for Model Registry URL. Go to `jukebox/3-prod_datascience/prod_train_save_pipeline.py` and find the below line to replace the placeholder (somewhere around line 120). Make sure you save the file 👻
+2. Run it once by hand to see it work (later it is triggered automatically). In your workbench open a **Terminal**
+   (File → New → Terminal) and run:
 
     ```bash
-        metadata = {
-        "hyperparameters": {
-            "epochs": 2
-        },
-        "model_name": "jukebox",
-        "version": "0.0.2",
-        "cluster_domain": "<CLUSTER_DOMAIN>", # 👈 add your cluster domain here
-        "model_storage_pvc": "jukebox-model-pvc",
-        "prod_flag": False
-    }
+    cd ~/jukebox/3-prod_datascience && python prod_train_save_pipeline.py
     ```
 
-2. As we mentioned, we are not supposed to trigger this pipeline manually but just to test the functionality and view the output, let's run it by clicking ▶️ on the file `prod_train_save_pipeline.py`
+    It prints `Connecting to Data Science Pipelines: https://ds-pipeline-dspa.<USER_NAME>-jukebox.svc:8443` and then
+    exits: the pipeline now runs on the cluster. Warnings (`FutureWarning`) can be ignored.
 
-    ![kfp-run.png](./images/kfp-run.png)
-
-    You need to see an output like this in `Console Output`. It means that your pipeline was started successfully 🐍
-
-    ```bash
-        Connecting to Data Science Pipelines: https://ds-pipeline-dspa.<USER_NAME>-jukebox.svc:8443
-        /opt/app-root/lib64/python3.11/site-packages/kfp/dsl/component_decorator.py:121: FutureWarning: The default base_image used by the @dsl.component decorator will switch from 'python:3.8' to 'python:3.9' on Oct 1, 2024. To ensure your existing components work with versions of the KFP SDK released after that date, you should provide an explicit base_image argument and ensure your component works as intended on Python 3.9.
-        return component_factory.create_component_from_func(
-        /opt/app-root/lib64/python3.11/site-packages/kfp/client/client.py:159: FutureWarning: This client only works with Kubeflow Pipeline v2.0.0-beta.2 and later versions.
-        warnings.warn(
-        <IPython.core.display.HTML object><IPython.core.display.HTML object>
-    ```
-
-
-3. Go to OpenShift AI Dashboard. From the left menu, under `Develop & train`, and go to `Pipelines` > `Runs`. You'll see there is one run with the status `Running`. Click to see the details of the pipeline run.
+3. In the OpenShift AI dashboard, under `Develop & train`, go to `Pipelines` > `Runs`. You'll see there is one run with the status `Running`. Click to see the details of the pipeline run.
 
     ![experiments.png](./images/experiments.png)
 
@@ -70,7 +49,7 @@ Now that you know what the pipeline is supposed to do, let's go ahead and run it
 
     Take some time to explore this view and familiarize yourself with its features. The pipeline might take a while to finish on its first run, but you don’t need to wait for it to complete. Feel free to move on to the next steps!
 
-4. The next step is to set up the MLOps environment, enabling this pipeline to run automatically and supporting many other MLOps practices. This is where our MLOps adventure starts! 🙌
+4. Next: [3. The Data Tracks](../5-the-data-tracks/index.md), a small data pipeline.
 
 > 📖🤓 **Extra Info: Component Registry**  
 We have quite a few different components used in our pipeline.  
