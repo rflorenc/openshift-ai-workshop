@@ -1,11 +1,13 @@
 /* Fills the guides' placeholders with the participant's values, stored in this browser only.
- *   <USER_NAME> <PASSWORD> <CLUSTER_DOMAIN>  entered on the start page
+ *   <USER_NAME> <CLUSTER_DOMAIN>  entered on the start page (passwords are never stored or shown)
  *   <GIT_SERVER>              derived: gitea-gitea.<CLUSTER_DOMAIN>
  *   <TRIMMED_CLUSTER_DOMAIN>  derived: <CLUSTER_DOMAIN> without the leading "apps."
  * Runs on every page load, also with instant navigation (document$). */
 (function () {
   const KEY = "ws-values";
-  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } };
+  const load = () => { try { const v = JSON.parse(localStorage.getItem(KEY)) || {};
+    if ("password" in v) { delete v.password; localStorage.setItem(KEY, JSON.stringify(v)); }   // older versions stored it
+    return v; } catch (e) { return {}; } };
   const save = (v) => localStorage.setItem(KEY, JSON.stringify(v));
 
   function normaliseDomain(input) {
@@ -19,7 +21,6 @@
   function tokens(v) {
     const t = {};
     if (v.user) t["<USER_NAME>"] = v.user;
-    if (v.password) t["<PASSWORD>"] = v.password;
     if (v.domain) {
       t["<CLUSTER_DOMAIN>"] = v.domain;
       t["<GIT_SERVER>"] = "gitea-gitea." + v.domain;
@@ -55,7 +56,7 @@
   }
 
   function reminder(root, v) {
-    const needs = /<(USER_NAME|PASSWORD|CLUSTER_DOMAIN|GIT_SERVER|TRIMMED_CLUSTER_DOMAIN)>/.test(root.textContent);
+    const needs = /<(USER_NAME|CLUSTER_DOMAIN|GIT_SERVER|TRIMMED_CLUSTER_DOMAIN)>/.test(root.textContent);
     if (!needs || (v.user && v.domain) || root.querySelector(".ws-reminder")) return;
     const home = document.querySelector(".md-header__button.md-logo")?.getAttribute("href") || "/";
     const div = document.createElement("div");
@@ -69,11 +70,11 @@
     const form = document.getElementById("ws-values-form");
     if (!form) return;
     const v = load();
-    form.user.value = v.user || ""; form.password.value = v.password || ""; form.domain.value = v.domain || "";
+    form.user.value = v.user || ""; form.domain.value = v.domain || "";
     const status = form.querySelector(".ws-status");
     form.onsubmit = (e) => {
       e.preventDefault();
-      const nv = { user: form.user.value.trim(), password: form.password.value, domain: normaliseDomain(form.domain.value) };
+      const nv = { user: form.user.value.trim(), domain: normaliseDomain(form.domain.value) };
       form.domain.value = nv.domain;
       save(nv);
       status.textContent = "Saved: the guides now show your values.";
