@@ -40,6 +40,7 @@ This inner loop is essential in data science because it allows for continuous im
     Some instructions before you start:
     - Execute the cells **sequentially, one at a time**.  
     - **Read all instructions carefully**, including those at the end of each notebook, which guide you to the next step.  
+    - TensorFlow prints `Could not find cuda drivers ... GPU will not be used`: expected, this workbench runs on CPU.
 
     Once you've completed the last notebook, your model should be uploaded to the `models` bucket in MinIO. Then, return here to continue with the next steps! 😁 
 
