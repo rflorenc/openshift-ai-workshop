@@ -2306,7 +2306,7 @@ served by <strong>vLLM</strong> through <strong>KServe</strong>, OpenShift AI's 
 bigger model on a GPU; only the size, the runtime and the hardware profile change.</p>
 <p><strong>You will:</strong> read a model card, deploy TinyLlama 1.1B from the model catalog, call it with <code>curl</code>
 and the OpenAI Python client, and break it on purpose to see how vLLM reports a bad setting.</p>
-<p>Values from your instructor: <code>&lt;USER_NAME&gt;</code>, <code>&lt;PASSWORD&gt;</code>, <code>&lt;CLUSTER_DOMAIN&gt;</code>.
+<p>Values from your instructor: <code>&lt;USER_NAME&gt;</code>, your password, <code>&lt;CLUSTER_DOMAIN&gt;</code>.
 Your project for this lab: <strong><code>&lt;USER_NAME&gt;-serving</code></strong>.</p>
 <hr />
 <h2 id="1-which-model-fits-10-min">1. Which model fits? (10 min)<a class="headerlink" href="#1-which-model-fits-10-min" title="Permanent link">&para;</a></h2>
@@ -2382,7 +2382,7 @@ What to look for:</p>
 and note its <strong>context length</strong> (you need it in step 5) and its license.</p>
 <h2 id="2-deploy-tinyllama-15-min">2. Deploy TinyLlama (15 min)<a class="headerlink" href="#2-deploy-tinyllama-15-min" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Log in to the OpenShift AI dashboard: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (user <code>&lt;USER_NAME&gt;</code>, password <code>&lt;PASSWORD&gt;</code>).</li>
+<li>Log in to the OpenShift AI dashboard: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (your user name and password).</li>
 <li>Go to <strong>AI hub → Models</strong>, tab <strong>Catalog</strong>, and pick <strong>Workshop models</strong> in the row of categories (next to <em>Red Hat AI models</em> and <em>Other models</em>).
    Open <strong>TinyLlama-1.1B-Chat-v1.0</strong>, read the card, then click <strong>Deploy model</strong>. A five-step wizard opens:<blockquote>
 <p>Not in the catalog? Go to your project → <strong>Models → Deploy model</strong> and choose

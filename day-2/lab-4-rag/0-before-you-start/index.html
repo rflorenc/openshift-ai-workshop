@@ -2226,7 +2226,7 @@
 <h1 id="before-you-start-workbench-and-notebooks">Before you start: workbench and notebooks<a class="headerlink" href="#before-you-start-workbench-and-notebooks" title="Permanent link">&para;</a></h1>
 <p>You set up the workbench once here and keep using it in Lab 5.</p>
 <ol>
-<li>Open OpenShift AI: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (user <code>&lt;USER_NAME&gt;</code>, password <code>&lt;PASSWORD&gt;</code>).</li>
+<li>Open OpenShift AI: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (your user name and password).</li>
 </ol>
 <p><img alt="openshift-ai.png" src="../images/openshift-ai.png" /></p>
 <ol>
@@ -2249,8 +2249,9 @@
 <ol>
 <li>Clone your copy of the notebooks from the workshop's Git server:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://&lt;USER_NAME&gt;:&lt;PASSWORD&gt;@gitea-gitea.&lt;CLUSTER_DOMAIN&gt;/&lt;USER_NAME&gt;/experiments.git
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://gitea-gitea.&lt;CLUSTER_DOMAIN&gt;/&lt;USER_NAME&gt;/experiments.git
 </code></pre></div>
+   When asked, log in with your user name and password.</p>
 <ol>
 <li>The notebooks for this lab are in <code>experiments/5-rag/</code>. When you run the first cell of a notebook,
    choose the first kernel option, then the <code>Virtual Env</code> Python environment.</li>

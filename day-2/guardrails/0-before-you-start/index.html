@@ -2229,7 +2229,7 @@
 in the same clone. Continue with the next page.</p>
 <p><strong>Starting here?</strong> Set up the workbench:</p>
 <ol>
-<li>Open OpenShift AI: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (user <code>&lt;USER_NAME&gt;</code>, password <code>&lt;PASSWORD&gt;</code>).</li>
+<li>Open OpenShift AI: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (your user name and password).</li>
 <li>Project <strong><code>&lt;USER_NAME&gt;-canopy</code></strong> → <strong>Create a workbench</strong>: name <code>&lt;USER_NAME&gt;-canopy</code>, image
    <strong>GenAI Labs Code Server</strong>, the default CPU hardware profile. Open it when it is <strong>Running</strong>.</li>
 </ol>
@@ -2237,8 +2237,9 @@ in the same clone. Continue with the next page.</p>
 <ol>
 <li>Hamburger menu → <strong>Terminal</strong> → <strong>New Terminal</strong>, then clone your copy of the notebooks:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://&lt;USER_NAME&gt;:&lt;PASSWORD&gt;@gitea-gitea.&lt;CLUSTER_DOMAIN&gt;/&lt;USER_NAME&gt;/experiments.git
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://gitea-gitea.&lt;CLUSTER_DOMAIN&gt;/&lt;USER_NAME&gt;/experiments.git
 </code></pre></div>
+   When asked, log in with your user name and password.</p>
 <p><img alt="code-server-terminal.png" src="../images/code-server-terminal.png" /></p>
 <p>Already there for everyone (namespace <code>ai501</code>): the Llama 3.2 model at
 <code>http://llama-32-predictor.ai501.svc.cluster.local:8080</code>, and the detectors NeMo calls.</p>

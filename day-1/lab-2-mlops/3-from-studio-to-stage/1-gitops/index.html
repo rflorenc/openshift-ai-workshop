@@ -2349,8 +2349,8 @@ Leave the rest as the default and hit `Create workbench`.
 <ol>
 <li>An Argo CD instance is already installed to your <code>&lt;USER_NAME&gt;-toolings</code> environment. Let's verify that it is running and login to Argo CD UI.</li>
 </ol>
-<p>Log in to OpenShift using your credentials (remember to replace <PASSWORD> with your actual password).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>oc<span class="w"> </span>login<span class="w"> </span>--server<span class="o">=</span>https://api.&lt;TRIMMED_CLUSTER_DOMAIN&gt;:6443<span class="w"> </span>-u<span class="w"> </span>&lt;USER_NAME&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;PASSWORD&gt;
+<p>Log in to OpenShift (it asks for your password).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>oc<span class="w"> </span>login<span class="w"> </span>--server<span class="o">=</span>https://api.&lt;TRIMMED_CLUSTER_DOMAIN&gt;:6443<span class="w"> </span>-u<span class="w"> </span>&lt;USER_NAME&gt;
 </code></pre></div>
 <p>Then check if Argo CD pods are alive:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;USER_NAME&gt;-toolings
