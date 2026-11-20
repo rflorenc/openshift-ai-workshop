@@ -13,20 +13,17 @@ The rails we've configured for Canopy:
 | **PII Detection** | Emails, phone numbers, credit cards, SSNs |
 | **LLM-as-Judge** | Anything ambiguous that slips past the others |
 
-The rules themselves are written in **Colang** — a simple domain-specific language that defines input and output flows. You don't need to know Colang in depth for this module, but it's good to know it lives in the Helm chart you're about to deploy.
+The rules themselves are written in **Colang** — a simple domain-specific language that defines input and output flows. You don't need to know Colang in depth for this module, but it's good to know it lives in that Helm chart.
 
-## Deploy NeMo Guardrails
+## Your NeMo Guardrails
 
-> **Do this first: the notebook needs it.** Without this release the notebook's first NeMo call fails with
-> "Failed to resolve 'canopy-guardrails…'".
+NeMo Guardrails is already deployed in your project `<USER_NAME>-canopy`, as the Helm release
+`nemo-guardrails-orchestrator` (chart *NeMo Guardrails Orchestrator* from `GenAIOps Helm Charts`). Have a look:
+OpenShift console → **Helm → Releases**, and the **Topology** view, where `canopy-guardrails` should be green 💚.
+The HAP detector (Granite Guardian), the prompt injection detector (DeBERTa) and the Lingua language detector are
+shared by everyone, in namespace `ai501`.
 
-1. In the OpenShift console, project `<USER_NAME>-canopy`, go to **Helm > Releases > Create Helm Release** and select `GenAIOps Helm Charts` to find the `NeMo Guardrails Orchestrator` chart.
-
-    ![nemo-guardrails-helm.png](./images/nemo-guardrails-helm.png)
-
-    You don't need to change any values — just hit **Create**!
-
-2. Wait for the NeMo service  to come up. The HAP detector (Granite Guardian), the prompt injection detector (DeBERTa), and the Lingua language detector are already deployed for you (shared by everyone, in namespace `ai501`). Check the Topology view — everything should be green 💚
+![nemo-guardrails-helm.png](./images/nemo-guardrails-helm.png)
 
 ## Experience the Guardrails
 
