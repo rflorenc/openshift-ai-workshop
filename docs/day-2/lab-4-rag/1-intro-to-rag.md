@@ -41,3 +41,10 @@ Browse the programs in the "Academic Excellence" section, and download the sylla
 Now that we have seen RAG in practice, let's build it ourselves, step by step.
 
 Next: [Understanding embeddings](2-rag-basics.md)
+
+---
+
+**What a successful answer looks like** (Knowledge on, one question in a new chat): the answer cites 240 ECTS, and
+"1 source retrieved" lists the PDF chunks it used.
+
+![Playground answer grounded on the uploaded syllabus PDF](./images/playground-rag-answer.png)
