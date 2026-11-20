@@ -20,6 +20,7 @@ Some examples include:
 
 1. In **Gen AI studio → Playground** (project `<USER_NAME>-canopy`, Knowledge **off**), open the **Prompt** tab
    and set a system prompt that tells the model **not** to talk about Fight Club. Then ask it about Fight Club.
+   Model: **llama32/Llama 3.2 3B (in-cluster, T4)** (the screenshots show it as `vllm/llama32`).
 
     ![fight-club-2.png](./images/fight-club-2.png)
 
