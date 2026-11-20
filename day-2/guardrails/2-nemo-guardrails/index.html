@@ -1861,10 +1861,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deploy-nemo-guardrails" class="md-nav__link">
+  <a href="#your-nemo-guardrails" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deploy NeMo Guardrails
+        Your NeMo Guardrails
       
     </span>
   </a>
@@ -2274,10 +2274,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deploy-nemo-guardrails" class="md-nav__link">
+  <a href="#your-nemo-guardrails" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Deploy NeMo Guardrails
+        Your NeMo Guardrails
       
     </span>
   </a>
@@ -2349,22 +2349,14 @@
 </tr>
 </tbody>
 </table>
-<p>The rules themselves are written in <strong>Colang</strong> — a simple domain-specific language that defines input and output flows. You don't need to know Colang in depth for this module, but it's good to know it lives in the Helm chart you're about to deploy.</p>
-<h2 id="deploy-nemo-guardrails">Deploy NeMo Guardrails<a class="headerlink" href="#deploy-nemo-guardrails" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Do this first: the notebook needs it.</strong> Without this release the notebook's first NeMo call fails with
-"Failed to resolve 'canopy-guardrails…'".</p>
-</blockquote>
-<ol>
-<li>
-<p>In the OpenShift console, project <code>&lt;USER_NAME&gt;-canopy</code>, go to <strong>Helm &gt; Releases &gt; Create Helm Release</strong> and select <code>GenAIOps Helm Charts</code> to find the <code>NeMo Guardrails Orchestrator</code> chart.</p>
+<p>The rules themselves are written in <strong>Colang</strong> — a simple domain-specific language that defines input and output flows. You don't need to know Colang in depth for this module, but it's good to know it lives in that Helm chart.</p>
+<h2 id="your-nemo-guardrails">Your NeMo Guardrails<a class="headerlink" href="#your-nemo-guardrails" title="Permanent link">&para;</a></h2>
+<p>NeMo Guardrails is already deployed in your project <code>&lt;USER_NAME&gt;-canopy</code>, as the Helm release
+<code>nemo-guardrails-orchestrator</code> (chart <em>NeMo Guardrails Orchestrator</em> from <code>GenAIOps Helm Charts</code>). Have a look:
+OpenShift console → <strong>Helm → Releases</strong>, and the <strong>Topology</strong> view, where <code>canopy-guardrails</code> should be green 💚.
+The HAP detector (Granite Guardian), the prompt injection detector (DeBERTa) and the Lingua language detector are
+shared by everyone, in namespace <code>ai501</code>.</p>
 <p><img alt="nemo-guardrails-helm.png" src="../images/nemo-guardrails-helm.png" /></p>
-<p>You don't need to change any values — just hit <strong>Create</strong>!</p>
-</li>
-<li>
-<p>Wait for the NeMo service  to come up. The HAP detector (Granite Guardian), the prompt injection detector (DeBERTa), and the Lingua language detector are already deployed for you (shared by everyone, in namespace <code>ai501</code>). Check the Topology view — everything should be green 💚</p>
-</li>
-</ol>
 <h2 id="experience-the-guardrails">Experience the Guardrails<a class="headerlink" href="#experience-the-guardrails" title="Permanent link">&para;</a></h2>
 <p>Now let's see the rails in action. Go to your workbench and open:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>experiments/7-guardrails/1-intro-to-guardrails.ipynb
