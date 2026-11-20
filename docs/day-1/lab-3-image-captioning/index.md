@@ -14,6 +14,9 @@ Your project for this lab: **`<USER_NAME>-coco`**.
 
 ## 1. Create the workbench (10 min)
 
+0. Free up resources from Labs 1 and 2 (they are not needed again; nothing is lost, **Start** brings them back):
+   - **Projects** → `<USER_NAME>-serving` and `<USER_NAME>-jukebox` → **Workbenches**: **Stop** each workbench
+   - **AI hub → Models → Deployments**: **Stop** on your `tinyllama` and `jukebox` rows
 1. OpenShift AI dashboard `https://rh-ai.<CLUSTER_DOMAIN>` → project **`<USER_NAME>-coco`** →
    **Workbenches → Create workbench**:
    - Name: **`coco`**
@@ -55,6 +58,10 @@ While it runs, open a **Terminal** and watch the GPU: `nvidia-smi` (memory used,
 - captions generated for test images, next to the human ones
 - the average BLEU and cosine scores printed (for reference: BLEU ~0.2, cosine ~0.67)
 - you can say which step needed the GPU and how much GPU memory it used
+
+## When you're done
+
+**Stop** your `coco` workbench (project `<USER_NAME>-coco` → Workbenches → Stop): it gives the GPU back for the next person.
 
 ## If something goes wrong
 
