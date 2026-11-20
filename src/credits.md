@@ -14,5 +14,6 @@ The pages were shortened and adapted to this workshop's environment. Notebooks, 
 container images come from the same projects ([rhoai-genaiops](https://github.com/rhoai-genaiops),
 [rhoai-mlops](https://github.com/rhoai-mlops)).
 
-Lab 3 uses the [COCO dataset](https://cocodataset.org) (Creative Commons Attribution 4.0) and a pretrained
-ResNet152 from [torchvision](https://pytorch.org/vision/).
+Lab 3 is adapted from the [EDA AI Hub](https://github.com/rflorenc/eda-ai-hub) lab. It uses the
+[COCO dataset](https://cocodataset.org) (Creative Commons Attribution 4.0) and a pretrained ResNet152 from
+[torchvision](https://pytorch.org/vision/).
