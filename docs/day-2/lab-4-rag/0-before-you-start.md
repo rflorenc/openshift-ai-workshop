@@ -2,7 +2,7 @@
 
 You set up the workbench once here and keep using it in Lab 5.
 
-1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
+1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (your user name and password).
 
    ![openshift-ai.png](./images/openshift-ai.png)
 
@@ -27,8 +27,9 @@ You set up the workbench once here and keep using it in Lab 5.
 5. Clone your copy of the notebooks from the workshop's Git server:
 
    ```bash
-   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
+   git clone https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
    ```
+   When asked, log in with your user name and password.
 
 6. The notebooks for this lab are in `experiments/5-rag/`. When you run the first cell of a notebook,
    choose the first kernel option, then the `Virtual Env` Python environment.

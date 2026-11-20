@@ -34,10 +34,10 @@ Let’s create a new workbench next to the existing Jupyter Notebook `<USER_NAME
 
 3. An Argo CD instance is already installed to your `<USER_NAME>-toolings` environment. Let's verify that it is running and login to Argo CD UI.
 
-  Log in to OpenShift using your credentials (remember to replace <PASSWORD> with your actual password).
+  Log in to OpenShift (it asks for your password).
 
   ```bash
-    oc login --server=https://api.<TRIMMED_CLUSTER_DOMAIN>:6443 -u <USER_NAME> -p <PASSWORD>
+    oc login --server=https://api.<TRIMMED_CLUSTER_DOMAIN>:6443 -u <USER_NAME>
   ```
 
   Then check if Argo CD pods are alive:

@@ -8,7 +8,7 @@ server, then in code. You call tools from Python, deploy your own **MCP server**
 calendar), build a **ReAct agent** from scratch, rebuild it with **LangGraph** on Llama Stack, and finally
 see how an MCP server is secured with **OAuth** (Keycloak).
 
-Values from your instructor: `<USER_NAME>`, `<PASSWORD>`, `<CLUSTER_DOMAIN>`.
+Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`.
 Your project for this lab: **`<USER_NAME>-canopy`**.
 
 | Step | Page | Time |

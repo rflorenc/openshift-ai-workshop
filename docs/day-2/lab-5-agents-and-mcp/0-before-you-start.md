@@ -6,7 +6,7 @@ notebooks for this lab are there, in the same clone. Then continue with the next
 
 **Starting here?** Set up the workbench as follows.
 
-1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
+1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (your user name and password).
 
    ![openshift-ai.png](./images/openshift-ai.png)
 
@@ -31,8 +31,9 @@ notebooks for this lab are there, in the same clone. Then continue with the next
 5. Clone your copy of the notebooks from the workshop's Git server:
 
    ```bash
-   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
+   git clone https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
    ```
+   When asked, log in with your user name and password.
 
 6. The notebooks for this lab are in `experiments/8-agents/`. When you run the first cell of a
    notebook, choose the first kernel option, then the `Virtual Env` Python environment.

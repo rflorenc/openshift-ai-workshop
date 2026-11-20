@@ -52,12 +52,12 @@
 6. In your workbench, click the Git icon and **clone** your copy:
 
     ```bash
-    https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/jukebox.git
+    https://<GIT_SERVER>/<USER_NAME>/jukebox.git
     ```
 
     ![notebook-clone-repo.png](./images/notebook-clone-repo.png)
 
-    After cloning the repository, you should see the `jukebox` folder in the left-hand panel.
+    When asked, log in with your user name and password. After cloning the repository, you should see the `jukebox` folder in the left-hand panel.
 
     ![jupyter-notebook-ui.png](./images/jupyter-notebook-ui.png)
 

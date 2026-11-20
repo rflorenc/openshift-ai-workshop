@@ -8,7 +8,7 @@ enforceable policy layer in front of the model: **NeMo Guardrails** with regex r
 hate speech and prompt injection, a language check, personal-data detection and an LLM as judge. Then
 you try to get past it, by hand and with an automated red-teaming tool (**Spikee**).
 
-Values from your instructor: `<USER_NAME>`, `<PASSWORD>`, `<CLUSTER_DOMAIN>`.
+Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`.
 Your project: **`<USER_NAME>-canopy`** (the same as Labs 4 and 5).
 
 | Step | Page | Time |

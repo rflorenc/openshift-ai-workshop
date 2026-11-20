@@ -20,7 +20,7 @@ Gitea is a lightweight, self-hosted Git server that allows teams to manage repos
 
     ```bash
     cd /opt/app-root/src
-    git clone https://<USER_NAME>:<PASSWORD>@<GIT_SERVER>/<USER_NAME>/mlops-gitops.git
+    git clone https://<GIT_SERVER>/<USER_NAME>/mlops-gitops.git
     ```
 
    With our git project cloned - let's start our GitOps Journey 🧙‍♀️🦄!

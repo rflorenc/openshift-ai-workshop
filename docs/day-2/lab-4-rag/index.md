@@ -8,7 +8,7 @@ OpenShift AI Playground, then step by step in code. You turn text into **embeddi
 in the vector database **Milvus**, convert a complex PDF with **Docling**, and finally let **Llama Stack** do
 chunking, embedding, storing and retrieving behind one API.
 
-Values from your instructor: `<USER_NAME>`, `<PASSWORD>`, `<CLUSTER_DOMAIN>`.
+Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`.
 Your project for this lab (and for Lab 5): **`<USER_NAME>-canopy`**.
 
 | Step | Page | Time |

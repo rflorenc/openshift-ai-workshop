@@ -56,8 +56,6 @@ instructor gave you once; they are stored **in this browser only** and filled in
 <form id="ws-values-form" class="ws-values" autocomplete="off">
   <label for="ws-user">User name</label>
   <input id="ws-user" name="user" placeholder="e.g. user-01">
-  <label for="ws-password">Password</label>
-  <input id="ws-password" name="password" type="password" placeholder="from your instructor">
   <label for="ws-domain">Cluster domain (or paste the console URL)</label>
   <input id="ws-domain" name="domain" placeholder="e.g. apps.cluster.example.com">
   <div class="ws-buttons">

@@ -11,7 +11,7 @@ bigger model on a GPU; only the size, the runtime and the hardware profile chang
 **You will:** read a model card, deploy TinyLlama 1.1B from the model catalog, call it with `curl`
 and the OpenAI Python client, and break it on purpose to see how vLLM reports a bad setting.
 
-Values from your instructor: `<USER_NAME>`, `<PASSWORD>`, `<CLUSTER_DOMAIN>`.
+Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`.
 Your project for this lab: **`<USER_NAME>-serving`**.
 
 ---
@@ -44,7 +44,7 @@ and note its **context length** (you need it in step 5) and its license.
 
 ## 2. Deploy TinyLlama (15 min)
 
-1. Log in to the OpenShift AI dashboard: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
+1. Log in to the OpenShift AI dashboard: `https://rh-ai.<CLUSTER_DOMAIN>` (your user name and password).
 2. Go to **AI hub → Models**, tab **Catalog**, and pick **Workshop models** in the row of categories (next to *Red Hat AI models* and *Other models*).
    Open **TinyLlama-1.1B-Chat-v1.0**, read the card, then click **Deploy model**. A five-step wizard opens:
    > Not in the catalog? Go to your project → **Models → Deploy model** and choose

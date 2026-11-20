@@ -6,7 +6,7 @@ in the same clone. Continue with the next page.
 
 **Starting here?** Set up the workbench:
 
-1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (user `<USER_NAME>`, password `<PASSWORD>`).
+1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (your user name and password).
 2. Project **`<USER_NAME>-canopy`** → **Create a workbench**: name `<USER_NAME>-canopy`, image
    **GenAI Labs Code Server**, the default CPU hardware profile. Open it when it is **Running**.
 
@@ -15,8 +15,9 @@ in the same clone. Continue with the next page.
 3. Hamburger menu → **Terminal** → **New Terminal**, then clone your copy of the notebooks:
 
    ```bash
-   git clone https://<USER_NAME>:<PASSWORD>@gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
+   git clone https://gitea-gitea.<CLUSTER_DOMAIN>/<USER_NAME>/experiments.git
    ```
+   When asked, log in with your user name and password.
 
    ![code-server-terminal.png](./images/code-server-terminal.png)
 

@@ -34,7 +34,7 @@ The key insight: the MCP server never sees passwords. It only validates tokens i
 
 ## Try It Out
 
-Open the notebook `8-agents/5-mcp-servers-auth.ipynb` in your workbench to see OAuth in action. In its first cell set `USERNAME = "<USER_NAME>"` and `PASSWORD = "<PASSWORD>"` (your workshop login): your user exists in the Keycloak realm `mcp-calendar`.
+Open the notebook `8-agents/5-mcp-servers-auth.ipynb` in your workbench to see OAuth in action. In its first cell set `USERNAME = "<USER_NAME>"` and `PASSWORD` to your workshop password: your user exists in the Keycloak realm `mcp-calendar`.
 
 ## Key Takeaways
 

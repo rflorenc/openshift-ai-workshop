@@ -9,7 +9,7 @@ and cosine similarity score the captions. You run it in a GPU workbench, with th
 from a shared, read-only dataset store inside the cluster: no downloads from the internet, no
 copies per person.
 
-Values from your instructor: `<USER_NAME>`, `<PASSWORD>`, `<CLUSTER_DOMAIN>`, the GPU hardware profile.
+Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`, the GPU hardware profile.
 Your project for this lab: **`<USER_NAME>-coco`**.
 
 ## 1. Create the workbench (10 min)
