@@ -2342,14 +2342,17 @@
 </blockquote>
 <p><img alt="fight-club.jpg" src="../images/fight-club.jpg" /></p>
 <ol>
-<li>As we experienced number of times, system prompts define how LLMs should behave. The minimum thing we can do is set a system prompt. Go to your GenAI Playground in OpenShift AI Dashboard and try sending a message directly to the model with a system prompt that instructs it <strong>not</strong> to talk about Fight Club.</li>
-</ol>
-<p>The minimum thing we can do is set a system prompt. In your workbench, open a terminal and try sending a message directly to the model with a system prompt that instructs it <strong>not</strong> to talk about Fight Club:</p>
+<li>
+<p>In <strong>Gen AI studio → Playground</strong> (project <code>&lt;USER_NAME&gt;-canopy</code>, Knowledge <strong>off</strong>), open the <strong>Prompt</strong> tab
+   and set a system prompt that tells the model <strong>not</strong> to talk about Fight Club. Then ask it about Fight Club.</p>
 <p><img alt="fight-club-2.png" src="../images/fight-club-2.png" /></p>
-<ol>
-<li>After you find a system prompt that works, think about ways you can go around it and make the model talk about Fight Club anyway. Time yourself — how long does it take?</li>
-</ol>
+</li>
+<li>
+<p>Once you have a system prompt that holds, try to get around it and make the model talk about Fight Club anyway.
+   Time yourself: how long does it take?</p>
 <p><img alt="fight-club-3.png" src="../images/fight-club-3.png" /></p>
+</li>
+</ol>
 <p>System prompts are just suggestions inside the model's context. They're not enforceable rules, so a clever prompt injection, obfuscation, or long conversation can nudge the model to ignore them. Because LLMs are probabilistic and sensitive to phrasing and context order, even "good" system prompts behave inconsistently across inputs and model versions.</p>
 <p>Robust guardrails need layered enforcement <strong>outside</strong> the model — pre/post filters, classifiers, policy engines, and allow/deny lists — to reliably block disallowed behavior and data leakage.</p>
 <p>So let's dive into them. And for this, we need to introduce an exciting tool: <strong>NeMo Guardrails</strong>! 🛡️</p>
