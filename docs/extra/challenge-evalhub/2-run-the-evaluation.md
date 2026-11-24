@@ -27,7 +27,7 @@
 | `401` / `403` when connecting | the token is wrong or expired: copy a fresh one (step 3) |
 | connection refused / timeout | your EvalHub is not ready yet: check step 1, part 3 |
 | job state `failed` | look at the evaluation job's pod: **Workloads → Pods** in your project → its **Logs** |
-| `ModuleNotFoundError: evalhub` | run the `%pip install` cell again, then restart the kernel |
+| `ModuleNotFoundError: evalhub` | restart the kernel, then run the cells from the top again (the install cell puts the SDK in `~/.evalhub-sdk`) |
 | `400 Bad Request` on submit, the EvalHub pod log says the experiment "is not active" | the MLflow experiment `evalhub-challenge` was deleted (MLflow keeps the name reserved): set another `mlflow_experiment_name`, or restore it in MLflow (**Deleted experiments** → **Restore**) |
 
 Next: [Read the results in MLflow](3-results-in-mlflow.md)
