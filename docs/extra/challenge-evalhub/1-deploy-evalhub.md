@@ -36,13 +36,8 @@ evaluation jobs use to reach the model.
       lm-evaluation-harness provider, and MLflow for the results.
     - **Secret** `llama32-auth`: the workshop model needs no API key, but EvalHub expects a Secret with one.
 
-3. Wait until it is ready (about 30 seconds): **Workloads → Pods** shows an `evalhub-…` pod **Running**, or in a
-   workbench terminal:
-
-    ```bash
-    oc get evalhub evalhub
-    ```
-
-    `PHASE` must be **Ready**.
+3. Wait until it is ready (about 30 seconds): in the console, **Workloads → Pods** shows an `evalhub-…` pod
+   **Running** (2/2). (Checking with `oc` in a workbench terminal does not work here: that terminal acts as the
+   workbench, not as you.)
 
 Next: [Run an evaluation from a notebook](2-run-the-evaluation.md)
