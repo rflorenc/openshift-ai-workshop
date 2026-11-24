@@ -2642,7 +2642,10 @@ What to look for:</p>
 </tbody>
 </table>
 <p>Open the card of <a href="https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0">TinyLlama/TinyLlama-1.1B-Chat-v1.0</a>
-and note its <strong>context length</strong> (you need it in step 5) and its license.</p>
+and note its license. Its <strong>context length</strong> is not in the card's text: open <strong>Files and versions</strong> →
+<a href="https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0/blob/main/config.json"><code>config.json</code></a> and find
+<code>"max_position_embeddings": 2048</code>, so <strong>2048 tokens</strong> (the workshop catalog entry in step 2 says the same).
+You use this number in step 5.</p>
 <h2 id="2-deploy-tinyllama-15-min">2. Deploy TinyLlama (15 min)<a class="headerlink" href="#2-deploy-tinyllama-15-min" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Log in to the OpenShift AI dashboard: <code>https://rh-ai.&lt;CLUSTER_DOMAIN&gt;</code> (your user name and password).</li>
@@ -2738,7 +2741,7 @@ the model supports and it refuses to start, with a clear message.</p>
 <ol>
 <li><strong>AI hub → Models → Deployments</strong> (or your project → <strong>Models</strong>) → <code>&lt;MODEL_NAME&gt;</code> → ⋮ → <strong>Edit</strong>.</li>
 <li>In <strong>Advanced settings</strong>, tick <strong>Add custom runtime arguments</strong> and enter <code>--max-model-len=8192</code>
-   (TinyLlama's card says 2048). Save / <strong>Redeploy</strong>.<blockquote>
+   (four times TinyLlama's 2048-token context from step 1). Save / <strong>Redeploy</strong>.<blockquote>
 <p><code>exceeded quota: lab-quota</code> instead? The deployment uses <strong>Rolling update</strong>, which starts the new pod next to the
 old one and goes over your CPU quota. Edit again → <strong>Advanced settings</strong> → Deployment strategy <strong>Recreate</strong> → save.</p>
 </blockquote>
