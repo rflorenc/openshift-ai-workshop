@@ -32,6 +32,11 @@ ResNet features and an LSTM captioner, trained on a GPU.
 
 <div class="ws-grid" markdown>
 <div class="ws-card" markdown>
+<span class="chip lab">Lab · 30 min</span>
+### [Evals: evaluate your model](day-2/evals/index.md)
+Deploy EvalHub, benchmark Llama 3.2 on arc_easy, read the scores in MLflow.
+</div>
+<div class="ws-card" markdown>
 <span class="chip lab">Lab · 60 min</span>
 ### [Lab 4: RAG](day-2/lab-4-rag/index.md)
 Embeddings, Milvus, Docling and Llama Stack: answers grounded in your documents.
@@ -45,16 +50,6 @@ NeMo Guardrails in front of the model, then try to get past it.
 <span class="chip lab">Lab · 75 min</span>
 ### [Lab 5: Agents and MCP](day-2/lab-5-agents-and-mcp/index.md)
 Tools, MCP servers, a ReAct agent and LangGraph on Llama Stack.
-</div>
-</div>
-
-## Extra: Optional challenges
-
-<div class="ws-grid" markdown>
-<div class="ws-card" markdown>
-<span class="chip activity">Activity · 30 min</span>
-### [Challenge: Evaluate your model (EvalHub)](extra/challenge-evalhub/index.md)
-Deploy your own EvalHub, benchmark Llama 3.2 on arc_easy, read the scores in MLflow.
 </div>
 </div>
 

@@ -1,6 +1,7 @@
 # Before you start: workbench and notebooks
 
-You set up the workbench once here and keep using it in Lab 5.
+You set up the workbench once here and keep using it in Lab 5. **Already created it in the Evals lab?** Open it and
+continue at step 4.
 
 1. Open OpenShift AI: `https://rh-ai.<CLUSTER_DOMAIN>` (your user name and password).
 

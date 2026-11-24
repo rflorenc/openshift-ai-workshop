@@ -1,9 +1,9 @@
-# Challenge: evaluate your model with EvalHub (30 min)
+# Evals: evaluate your model with EvalHub (30 min)
 
-<span class="chip activity">Activity · 30 min</span>
+<span class="chip lab">Lab · 30 min</span>
 
 
-!!! danger "Extra"
+!!! warning "Technology Preview"
     EvalHub is a Technology Preview in OpenShift AI 3.5.
 
 How good is the workshop model, measured instead of guessed? **EvalHub** is OpenShift AI's evaluation service:
@@ -12,7 +12,7 @@ you send it a model and a benchmark, it runs the evaluation as a job in your pro
 **Llama 3.2** with **lm-evaluation-harness**, and read the result in MLflow.
 
 Values from your instructor: `<USER_NAME>`, your password, `<CLUSTER_DOMAIN>`.
-Your project: **`<USER_NAME>-canopy`** (the same as Labs 4 and 5).
+Your project: **`<USER_NAME>-canopy`**. The workbench you create here is the one Labs 4 and 5 use.
 
 | Step | Page | Time |
 |---|---|---|

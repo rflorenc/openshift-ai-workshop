@@ -2,6 +2,11 @@
 
 <div class="ws-grid" markdown>
 <div class="ws-card" markdown>
+<span class="chip lab">Lab · 30 min</span>
+### [Evals: evaluate your model](evals/index.md)
+Evals: evaluate your model with EvalHub (30 min)
+</div>
+<div class="ws-card" markdown>
 <span class="chip lab">Lab · 60 min</span>
 ### [Lab 4: RAG](lab-4-rag/index.md)
 Lab 4: RAG with Milvus, Docling and Llama Stack (60 min)

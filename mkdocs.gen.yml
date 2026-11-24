@@ -31,6 +31,11 @@ nav:
     - day-1/lab-3-image-captioning/index.md
 - Day 2:
   - day-2/index.md
+  - 'Evals: evaluate your model':
+    - day-2/evals/index.md
+    - day-2/evals/1-deploy-evalhub.md
+    - day-2/evals/2-run-the-evaluation.md
+    - day-2/evals/3-results-in-mlflow.md
   - 'Lab 4: RAG':
     - day-2/lab-4-rag/index.md
     - day-2/lab-4-rag/0-before-you-start.md
@@ -54,11 +59,4 @@ nav:
     - day-2/lab-5-agents-and-mcp/2-agentic-workflows.md
     - day-2/lab-5-agents-and-mcp/3-agentic-llamas.md
     - day-2/lab-5-agents-and-mcp/5-securing-mcp-servers.md
-- Extra:
-  - extra/index.md
-  - 'Challenge: Evaluate your model (EvalHub)':
-    - extra/challenge-evalhub/index.md
-    - extra/challenge-evalhub/1-deploy-evalhub.md
-    - extra/challenge-evalhub/2-run-the-evaluation.md
-    - extra/challenge-evalhub/3-results-in-mlflow.md
 - Credits: credits.md
