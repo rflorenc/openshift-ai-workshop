@@ -40,7 +40,10 @@ A rough sizing guide (16-bit weights; quantized models need less):
 | > 30B | several GPUs | Llama 3.1 70B |
 
 Open the card of [TinyLlama/TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
-and note its **context length** (you need it in step 5) and its license.
+and note its license. Its **context length** is not in the card's text: open **Files and versions** →
+[`config.json`](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0/blob/main/config.json) and find
+`"max_position_embeddings": 2048`, so **2048 tokens** (the workshop catalog entry in step 2 says the same).
+You use this number in step 5.
 
 ## 2. Deploy TinyLlama (15 min)
 
@@ -155,7 +158,7 @@ the model supports and it refuses to start, with a clear message.
 
 1. **AI hub → Models → Deployments** (or your project → **Models**) → `<MODEL_NAME>` → ⋮ → **Edit**.
 2. In **Advanced settings**, tick **Add custom runtime arguments** and enter `--max-model-len=8192`
-   (TinyLlama's card says 2048). Save / **Redeploy**.
+   (four times TinyLlama's 2048-token context from step 1). Save / **Redeploy**.
    > `exceeded quota: lab-quota` instead? The deployment uses **Rolling update**, which starts the new pod next to the
    > old one and goes over your CPU quota. Edit again → **Advanced settings** → Deployment strategy **Recreate** → save.
 3. Watch it fail. The dashboard only says *Deployment does not have minimum availability*; the reason is in the log:
