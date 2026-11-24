@@ -54,4 +54,9 @@ nav:
     - day-2/lab-5-agents-and-mcp/2-agentic-workflows.md
     - day-2/lab-5-agents-and-mcp/3-agentic-llamas.md
     - day-2/lab-5-agents-and-mcp/5-securing-mcp-servers.md
+  - 'Challenge: Evaluate your model (EvalHub)':
+    - day-2/challenge-evalhub/index.md
+    - day-2/challenge-evalhub/1-deploy-evalhub.md
+    - day-2/challenge-evalhub/2-run-the-evaluation.md
+    - day-2/challenge-evalhub/3-results-in-mlflow.md
 - Credits: credits.md

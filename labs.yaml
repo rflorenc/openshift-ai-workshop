@@ -16,3 +16,4 @@ days:
       - {src: day_2/lab4-rag, slug: lab-4-rag, nav: "Lab 4: RAG", type: lab, minutes: 60}
       - {src: day_2/guardrails, slug: guardrails, nav: "Guardrails: break the bot", type: activity, minutes: 45}
       - {src: day_2/lab5-agents-mcp, slug: lab-5-agents-and-mcp, nav: "Lab 5: Agents and MCP", type: lab, minutes: 75}
+      - {src: day_2/evalhub-challenge, slug: challenge-evalhub, nav: "Challenge: Evaluate your model (EvalHub)", type: activity, minutes: 30}

@@ -16,4 +16,9 @@ Guardrails: break the bot (45 min)
 ### [Lab 5: Agents and MCP](lab-5-agents-and-mcp/index.md)
 Lab 5: Agents and MCP (75 min)
 </div>
+<div class="ws-card" markdown>
+<span class="chip activity">Activity · 30 min</span>
+### [Challenge: Evaluate your model (EvalHub)](challenge-evalhub/index.md)
+Challenge: evaluate your model with EvalHub (30 min)
+</div>
 </div>
