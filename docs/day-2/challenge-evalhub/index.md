@@ -3,9 +3,8 @@
 <span class="chip activity">Activity · 30 min</span>
 
 
-!!! danger "Extra challenge: at your own risk"
-    EvalHub is a **Technology Preview** in OpenShift AI 3.5. You set it up yourself, from scratch. It may not
-    work for everyone, the instructor has limited time to help, and nothing in the other labs depends on it.
+!!! danger "Extra"
+    EvalHub is a Technology Preview in OpenShift AI 3.5.
 
 How good is the workshop model, measured instead of guessed? **EvalHub** is OpenShift AI's evaluation service:
 you send it a model and a benchmark, it runs the evaluation as a job in your project and logs the scores to
