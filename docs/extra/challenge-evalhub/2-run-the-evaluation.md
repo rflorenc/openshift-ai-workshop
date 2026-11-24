@@ -5,7 +5,7 @@
 2. In the workbench, open a **Terminal** and download the notebook:
 
     ```bash
-    curl -LO https://rflorenc.github.io/openshift-ai-workshop/day-2/challenge-evalhub/evalhub-challenge.ipynb
+    curl -LO https://rflorenc.github.io/openshift-ai-workshop/extra/challenge-evalhub/evalhub-challenge.ipynb
     ```
 
 3. Get **your login token**: in the OpenShift console, click your user name (top right) → **Copy login command**

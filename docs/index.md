@@ -48,6 +48,16 @@ Tools, MCP servers, a ReAct agent and LangGraph on Llama Stack.
 </div>
 </div>
 
+## Extra: Optional challenges
+
+<div class="ws-grid" markdown>
+<div class="ws-card" markdown>
+<span class="chip activity">Activity · 30 min</span>
+### [Challenge: Evaluate your model (EvalHub)](extra/challenge-evalhub/index.md)
+Deploy your own EvalHub, benchmark Llama 3.2 on arc_easy, read the scores in MLflow.
+</div>
+</div>
+
 ## Your values { #your-values }
 
 The guides contain placeholders such as `<USER_NAME>` and `<CLUSTER_DOMAIN>`. Enter the values your
