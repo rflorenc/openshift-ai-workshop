@@ -2518,11 +2518,9 @@ evaluation jobs use to reach the model.</p>
 </ul>
 </li>
 <li>
-<p>Wait until it is ready (about 30 seconds): <strong>Workloads → Pods</strong> shows an <code>evalhub-…</code> pod <strong>Running</strong>, or in a
-   workbench terminal:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>oc<span class="w"> </span>get<span class="w"> </span>evalhub<span class="w"> </span>evalhub
-</code></pre></div>
-<p><code>PHASE</code> must be <strong>Ready</strong>.</p>
+<p>Wait until it is ready (about 30 seconds): in the console, <strong>Workloads → Pods</strong> shows an <code>evalhub-…</code> pod
+   <strong>Running</strong> (2/2). (Checking with <code>oc</code> in a workbench terminal does not work here: that terminal acts as the
+   workbench, not as you.)</p>
 </li>
 </ol>
 <p>Next: <a href="../2-run-the-evaluation/">Run an evaluation from a notebook</a></p>
