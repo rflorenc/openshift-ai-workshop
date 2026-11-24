@@ -2482,10 +2482,12 @@
 
 <h1 id="3-read-the-results-in-mlflow">3. Read the results in MLflow<a class="headerlink" href="#3-read-the-results-in-mlflow" title="Permanent link">&para;</a></h1>
 <ol>
-<li>In the OpenShift AI dashboard, go to <strong>Develop &amp; train → Experiments</strong> and click <strong>Launch MLflow</strong>.</li>
+<li>In the OpenShift AI dashboard, go to <strong>Develop &amp; train → Experiments</strong>.</li>
 <li>Select the workspace <strong><code>&lt;USER_NAME&gt;-canopy</code></strong> and open the experiment <strong>evalhub-challenge</strong>.</li>
-<li>Open the run (its id is the one the notebook printed): the <strong>metrics</strong> are the same scores, the <strong>parameters</strong>
-   show the model, benchmark and number of examples.</li>
+<li>At the top of the experiment, switch from <strong>GenAI</strong> to <strong>Model training</strong>: the <strong>Runs</strong> list appears.</li>
+<li>Each evaluation shows two runs: <code>arc-easy-&lt;number&gt;</code> (your job name) and one named after the job id
+   (<code>&lt;job id&gt;_0</code>). Open the <strong><code>_0</code></strong> run: its <strong>Metrics</strong> are the scores (<code>acc</code>, <code>acc_norm</code>, <code>overall_score</code>)
+   and its <strong>Parameters</strong> show the model, benchmark and number of examples.</li>
 </ol>
 <p><strong>Go further</strong></p>
 <ul>
