@@ -1,9 +1,11 @@
 # 3. Read the results in MLflow
 
-1. In the OpenShift AI dashboard, go to **Develop & train → Experiments** and click **Launch MLflow**.
+1. In the OpenShift AI dashboard, go to **Develop & train → Experiments**.
 2. Select the workspace **`<USER_NAME>-canopy`** and open the experiment **evalhub-challenge**.
-3. Open the run (its id is the one the notebook printed): the **metrics** are the same scores, the **parameters**
-   show the model, benchmark and number of examples.
+3. At the top of the experiment, switch from **GenAI** to **Model training**: the **Runs** list appears.
+4. Each evaluation shows two runs: `arc-easy-<number>` (your job name) and one named after the job id
+   (`<job id>_0`). Open the **`_0`** run: its **Metrics** are the scores (`acc`, `acc_norm`, `overall_score`)
+   and its **Parameters** show the model, benchmark and number of examples.
 
 **Go further**
 
